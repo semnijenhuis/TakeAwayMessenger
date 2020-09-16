@@ -1,5 +1,4 @@
-**Project plan template**
-# Title of project
+# Project of project
 \<Insert Logo\>   
 
 ### Customer Name
