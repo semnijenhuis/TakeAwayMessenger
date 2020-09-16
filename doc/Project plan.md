@@ -8,7 +8,7 @@ The company started operations in 2000 when its CEO, Jitse Groen, founded and la
 ### Project group (members)   
 
 | Name | Date of birth | e-Mail |
-| ------ | ------ |
+| ------ | ------ |------ |
 | Lucia Pusova | 08 - 12 - 1991 | 474237@student.saxion.nl  |
 | Max Sterken | 18 - 05 - 1994 | 485736@student.saxion.nl   |
 | Sem Nijenhuis | 08 - 06 - 1998 | 470066@student.saxion.nl   |
@@ -33,24 +33,18 @@ Contact info and roles of the customer
 Agreements with customer about general communication
 
 ### General project description 
-A single line
+
+Takeaway wants the delivery person and customer be able to communication directly.
  
-Project description
-
-What does the company want, is that the same as “What is the problem they want to solve, and is that the same as… What’s the problem? (is there a problem?)”
-
 ## Project organisation
 See if you can switch scrum roles after each sprint. Make sure you talk with your lecturer if you think some additional guidance is needed.
 
 ### Scrum organisation
-Sprint 1
-Scrum roles
 
-Sprint 2
-Scrum roles
-
-Sprint 3
-Scrum roles
+Max Sterken -  Sprint 1
+Sem Nijenhuis - Sprint 2
+Lucia Pusova - Sprint 3
+Stephen Nedd - Contact Person
 
 Project agreements
 * Roles, and specialisations
