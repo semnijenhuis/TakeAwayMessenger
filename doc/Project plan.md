@@ -41,22 +41,31 @@ See if you can switch scrum roles after each sprint. Make sure you talk with you
 
 ### Scrum organisation
 
-Max Sterken -  Sprint 1
-Sem Nijenhuis - Sprint 2
-Lucia Pusova - Sprint 3
-Stephen Nedd - Contact Person
+| Sprint | header |
+| ------ | ------ |
+| 1 | Max Sterken |
+| 2 | Sem Nijenhuis |
+| 3 | Lucia Pusova |
+
+Stephen Nedd is our contact person
+
 
 Project agreements
 * Roles, and specialisations
 * Documentation agreements
 * Organisation    
-* Working agreements (ncluding measures/escalations)
+* Working agreements (including measures/escalations)
 
 Expected project result 
 (inc mile stones)
 
 
 ## Testing
+
+## Communication
+WhatsApp
+Microsoft Teams
+Collaborate
 
 ### Testing methods
 * User testing
