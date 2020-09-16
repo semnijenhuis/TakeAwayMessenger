@@ -1,15 +1,28 @@
-# Project of project
+# Project Persistence
 \<Insert Logo\>   
 
-### Customer Name
-contact info
-Customer supervisor(s)
+### Takeaway
+JustEat Takeaway.com is a leading online food ordering platform, focused on connecting consumers and restaurants through its platform in over 12 countries. JustEat Takeaway.com offers an online platform where supply and demand for food delivery and ordering come together.
+The company started operations in 2000 when its CEO, Jitse Groen, founded and launched one of the world's first online food ordering platforms, Thuisbezorgd.nl, in the Netherlands.
 
 ### Project group (members)   
-Names, student numbers & Mail addresses 
+
+| Name | Date of birth | e-Mail |
+| ------ | ------ |
+| Lucia Pusova | 08 - 12 - 1991 | 474237@student.saxion.nl  |
+| Max Sterken | 18 - 05 - 1994 | 485736@student.saxion.nl   |
+| Sem Nijenhuis | 08 - 06 - 1998 | 470066@student.saxion.nl   |
+| Stephen Nedd | 21 - 06 - 1995 | 484629@student.saxion.nl  |
+
+
 Introduction
 
 ## Descriptions
+
+Takeaway would like us to bring these drivers closer to the customers by means of a text chat based application that we are going to build.
+
+Couriers would like to message the customer directly to receive additional directions in order to deliver the order. In addition to the courier app, customers would need a means to chat with the courier as well. A simple chat interface for clients would do, keeping the focus on the courier app.
+
 ### Persistence Description
 Short description of Persistent (what it is) 5 lines
 Something you write for the customer to read. Quite often they do not really understand this project. 
