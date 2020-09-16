@@ -1,5 +1,5 @@
 # Project Persistence
-\<Insert Logo\>   
+![logo](takeawaylogo.png)   
 
 ### Takeaway
 JustEat Takeaway.com is a leading online food ordering platform, focused on connecting consumers and restaurants through its platform in over 12 countries. JustEat Takeaway.com offers an online platform where supply and demand for food delivery and ordering come together.
