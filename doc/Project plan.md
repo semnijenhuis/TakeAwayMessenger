@@ -36,9 +36,6 @@ Agreements with customer about general communication
 ### General project description 
 The goal of this project is to develop an app for Takeaway.com to their set specifications. The app that will be developed is a courier-client messaging app, with the main functionality of the app being a messaging system that communicates the clients of Takeaway.com to their couriers. The app will be developed and tested for the android platform. Using a backend and front end written in the Java programming language. The database that was chosen for this application is the PostgreSQL database. The user interface design will be created using mostly Adobe Xd, and will be designed following the specifications in the Takeaway.com visual identity as closely as possible.
  
-## Project organisation
-See if you can switch scrum roles after each sprint. Make sure you talk with your lecturer if you think some additional guidance is needed.
-
 ### Scrum organisation
 
 | Sprint | Scrum master |
