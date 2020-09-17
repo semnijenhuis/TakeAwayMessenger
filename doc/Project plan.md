@@ -75,4 +75,15 @@ Collaborate
 Ideally testing should be part of the project description and the way you handle your scrum sessions. And yes… this is a very obvious hint….
 
 ### Product backlog (prioritised)
-As issues in Gitlab
+| Priority | Issue  |
+| ------ | ------ |
+1|Design Front-End|
+1|Set up Databas|
+2|Display delivery-time|
+1|View Order details|
+1|Send Messages|
+1|Login functionality|
+1|Refresh Orders|
+2|Cache Messages|
+3|Online status of user|
+3|Close Orders|
