@@ -24,8 +24,9 @@ Takeaway would like us to bring these drivers closer to the customers by means o
 Couriers would like to message the customer directly to receive additional directions in order to deliver the order. In addition to the courier app, customers would need a means to chat with the courier as well. A simple chat interface for clients would do, keeping the focus on the courier app.
 
 ### Persistence Description
-Short description of Persistent (what it is) 5 lines
-Something you write for the customer to read. Quite often they do not really understand this project. 
+Project persistance is meant to teach us how to store data in a real world scenario. The app we are creating is dependant on some form of database 
+in order to store and load information about users and orders. That is the main goal of project persistance, to learn how to make an app from front
+end to back end for the android platform.
 
 ### Short description of customer (the company, not the supervisor)
 10 lines
@@ -33,15 +34,11 @@ Contact info and roles of the customer
 Agreements with customer about general communication
 
 ### General project description 
-
-Takeaway wants the delivery person and customer be able to communication directly.
+The goal of this project is to develop an app for Takeaway.com to their set specifications. The app that will be developed is a courier-client messaging app, with the main functionality of the app being a messaging system that communicates the clients of Takeaway.com to their couriers. The app will be developed and tested for the android platform. Using a backend and front end written in the Java programming language. The database that was chosen for this application is the PostgreSQL database. The user interface design will be created using mostly Adobe Xd, and will be designed following the specifications in the Takeaway.com visual identity as closely as possible.
  
-## Project organisation
-See if you can switch scrum roles after each sprint. Make sure you talk with your lecturer if you think some additional guidance is needed.
-
 ### Scrum organisation
 
-| Sprint | header |
+| Sprint | Scrum master |
 | ------ | ------ |
 | 1 | Max Sterken |
 | 2 | Sem Nijenhuis |
@@ -78,4 +75,15 @@ Collaborate
 Ideally testing should be part of the project description and the way you handle your scrum sessions. And yes… this is a very obvious hint….
 
 ### Product backlog (prioritised)
-As issues in Gitlab
+| Priority | Issue  |
+| ------ | ------ |
+1|Design Front-End|
+1|Set up Databas|
+2|Display delivery-time|
+1|View Order details|
+1|Send Messages|
+1|Login functionality|
+1|Refresh Orders|
+2|Cache Messages|
+3|Online status of user|
+3|Close Orders|
