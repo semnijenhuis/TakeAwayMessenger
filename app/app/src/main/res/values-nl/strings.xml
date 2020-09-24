@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TakeAway Messenger</string>
+    <string name="order_label">Bestelling</string>
+    <string name="orders_label">Bestellingen</string>
+    <string name="placeholder_name">Naam:</string>
+    <string name="placeholder_address">Adres:</string>
+    <string name="placeholder_deliverytime">Levertijd:</string>
+    <string name="orderpage_placeholder2">Lever adres:</string>
+    <string name="orderpage_OrderCompleteButtone">Bestelling afronder</string>
+</resources>

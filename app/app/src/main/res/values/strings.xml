@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TakeAwayMessenger</string>
+    <string name="orders_label">Orders</string>
+    <string name="order_label">Order</string>
+    <string name="placeholder_name">Name: </string>
+    <string name="placeholder_address">Address: </string>
+    <string name="placeholder_deliverytime">Delivery Time: </string>
+    <string name="orderpage_placeholder1">Order Details</string>
+    <string name="orderpage_placeholder2">Delivery Location</string>
+    <string name="orderpage_OrderCompleteButtone">Order Complete</string>
 </resources>
