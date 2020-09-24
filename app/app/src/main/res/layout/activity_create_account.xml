@@ -4,6 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF8000"
     tools:context=".Activities.CreateAccountActivity">
+
+
+    <EditText
+        android:id="@+id/createAccountName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:padding="15dp"
+        android:text="Email"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/createAccountName2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:padding="15dp"
+        android:text="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAccountPassword" />
+
+    <ImageView
+        android:id="@+id/createAccountLogo"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/takeawaylogo" />
+
+    <EditText
+        android:id="@+id/createAccountPassword"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:text="Password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/createAccountCancelButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#1574F5"
+        android:onClick="createCreateAccountButton"
+        android:text="Create account"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountCreateAccountButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/createAccountCreateAccountButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Cancel"
+        android:onClick="cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="By creating an account you agree to our Terms of Service and Privacy Policy"
+        android:textColor="#FFFFFF"
+        android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountCancelButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

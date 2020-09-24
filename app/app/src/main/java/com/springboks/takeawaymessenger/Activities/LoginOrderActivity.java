@@ -3,31 +3,32 @@ package com.springboks.takeawaymessenger.Activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.springboks.takeawaymessenger.R;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class LoginOrderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
+        setContentView(R.layout.activity_login_order);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
 
-    public void createCreateAccountButton(View view) {
+    public void cancelOrderNumber(View view) {
+        finish();
+    }
+
+    public void orderNumberLogin(View view) {
+
+        MainActivity.logedIn =true;
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
-    }
-
-    public void cancel(View view) {
-        finish();
     }
 }
