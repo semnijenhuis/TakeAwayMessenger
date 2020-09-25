@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         setContentView(R.layout.activity_main);
 
 
@@ -76,5 +79,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void mainActivityFinish(View view) {
+        finish();
     }
 }
