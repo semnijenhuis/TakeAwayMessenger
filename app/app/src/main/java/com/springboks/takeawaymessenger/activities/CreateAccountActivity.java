@@ -2,8 +2,6 @@ package com.springboks.takeawaymessenger.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import org.mindrot.jbcrypt.*;
-
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.springboks.takeawaymessenger.R;
-import com.springboks.takeawaymessenger.model.Customer;
-import com.springboks.takeawaymessenger.model.User;
+import com.springboks.takeawaymessenger.model.Courier;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -25,7 +22,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         actionBar.hide();
     }
 
-    public void createCreateAccountButton(View view) {
+    public void createAccount(View view) {
         EditText firstNameInput = findViewById(R.id.createAccountName);
         EditText lastNameInput = findViewById(R.id.createAccountLastName);
         EditText userNameInput = findViewById(R.id.createAccountUserName);
@@ -37,11 +34,10 @@ public class CreateAccountActivity extends AppCompatActivity {
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        //TODO: desing courier create account
-//        Customer newUser = new User(firstName,lastName,userName,password);
+        //TODO: desing customer create account
+        Courier newUser = new Courier(firstName,lastName,userName,password);
 
-
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, OrderActivity.class);
         startActivity(intent);
     }
 

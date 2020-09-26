@@ -3,13 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:background="#FF8000"-->
-<!--        android:contentDescription="@string/app_name"-->
-<!--        android:scaleType="center"-->
-<!--        android:src="" />-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#FF8000"
+        android:contentDescription="@string/app_name"
+        android:scaleType="center"
+  />
 
     <EditText
         android:id="@+id/createAccountName"

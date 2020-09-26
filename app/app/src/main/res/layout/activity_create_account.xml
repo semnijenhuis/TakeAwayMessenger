@@ -84,19 +84,19 @@
         android:autofillHints="@string/last_name" />
 
     <Button
-        android:id="@+id/createAccountCancelButton"
+        android:id="@+id/createAccountButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:backgroundTint="#1574F5"
-        android:onClick="createCreateAccountButton"
+        android:onClick="createAccount"
         android:text="@string/create_account"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/createAccountCreateAccountButton"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountCancelButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/createAccountCreateAccountButton"
+        android:id="@+id/createAccountCancelButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -115,7 +115,7 @@
         android:text="@string/by_creating_an_account_you_agree_to_our_terms_of_service_and_privacy_policy"
         android:textColor="#FFFFFF"
         android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/createAccountCancelButton"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
