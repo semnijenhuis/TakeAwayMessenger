@@ -11,12 +11,12 @@ import android.widget.EditText;
 import com.springboks.takeawaymessenger.R;
 import com.springboks.takeawaymessenger.model.Courier;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class CreateCourierActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
+        setContentView(R.layout.activity_create_courier);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -43,5 +43,9 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     public void cancel(View view) {
         finish();
+    }
+
+    public void fillPersonalIfo(View view) {
+
     }
 }

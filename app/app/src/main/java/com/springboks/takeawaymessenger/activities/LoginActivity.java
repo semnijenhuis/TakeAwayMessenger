@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import org.mindrot.jbcrypt.*;
 
 import com.springboks.takeawaymessenger.R;
 
@@ -27,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void createAccount(View view) {
-        Intent intent = new Intent(this, CreateAccountActivity.class);
+        Intent intent = new Intent(this, CreateCourierActivity.class);
         //TODO: we should do popups here if its customer or if its courier
         startActivity(intent);
     }
@@ -40,9 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-//        BCrypt.checkpw(password, this.password);
         MainActivity.loggedIn = true;
-
-
     }
 }
