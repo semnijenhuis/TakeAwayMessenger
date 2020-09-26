@@ -1,5 +1,7 @@
 package com.springboks.takeawaymessenger.model;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public abstract class User {
 
     private int userID;
@@ -12,8 +14,7 @@ public abstract class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        //:TODO: password needs encryption!!!
-        this.passWord = passWord;
+        this.passWord = BCrypt.hashpw(passWord, BCrypt.gensalt());
     }
 
     public int getUserID() {

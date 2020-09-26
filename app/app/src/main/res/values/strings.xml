@@ -16,4 +16,5 @@
     <string name="cancel">Cancel</string>
     <string name="by_creating_an_account_you_agree_to_our_terms_of_service_and_privacy_policy">By creating an account you agree to our Terms of Service and Privacy Policy</string>
     <string name="takeawaylogo">takeawayLogo</string>
+    <string name="address">Address</string>
 </resources>
