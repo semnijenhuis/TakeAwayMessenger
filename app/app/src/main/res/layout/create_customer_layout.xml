@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="64dp"-->
+<!--        android:background="#FF8000"-->
+<!--        android:contentDescription="@string/app_name"-->
+<!--        android:scaleType="center"-->
+<!--        android:src="" />-->
+
+    <EditText
+        android:id="@+id/createAccountName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:autofillHints="@string/first_name"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:hint="@string/first_name"
+        android:inputType="text"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/createAccountLastName"
+        android:layout_width="424dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/last_name"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:hint="@string/last_name"
+        android:inputType="text"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/createAccountAddress"
+        android:layout_width="424dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:hint="@string/address"
+        android:inputType="text"
+        android:padding="15dp"
+        android:autofillHints="@string/address" />
+
+</LinearLayout>

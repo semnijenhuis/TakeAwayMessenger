@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void createAccount(View view) {
         Intent intent = new Intent(this, CreateAccountActivity.class);
+        //TODO: we should do popups here if its customer or if its courier
         startActivity(intent);
     }
 

@@ -1,0 +1,6 @@
+app/app/gradlew
+app/app/gradlew.bat
+app/app/local.properties
+App/app/.idea/*
+app/app/gradle/wrapper/gradle-wrapper.jar
+app/app/gradle/wrapper/gradle-wrapper.properties
