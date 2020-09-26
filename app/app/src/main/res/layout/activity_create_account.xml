@@ -7,28 +7,44 @@
     android:background="#FF8000"
     tools:context=".activities.CreateAccountActivity">
 
+
+    <EditText
+        android:id="@+id/createAccountName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:hint="@string/first_name"
+        android:inputType="text"
+        android:padding="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountLastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="@string/first_name" />
+
     <EditText
         android:id="@+id/createAccountUserName"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="56dp"
-        android:autofillHints="@string/user_name"
+        android:layout_marginTop="5dp"
         android:background="@drawable/shadow"
         android:elevation="10dp"
         android:hint="@string/user_name"
         android:inputType="text"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAccountLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/createAccountLastName"
+        android:autofillHints="@string/user_name" />
 
     <EditText
         android:id="@+id/createAccountPassword"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints="@string/password"
+        android:layout_marginTop="60dp"
         android:background="@drawable/shadow"
         android:elevation="10dp"
         android:hint="@string/password"
@@ -37,7 +53,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAccountUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/createAccountLastName"
+        android:autofillHints="@string/password" />
 
     <ImageView
         android:id="@+id/createAccountLogo"
@@ -49,6 +66,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/takeawaylogo"
         android:contentDescription="@string/takeawaylogo" />
+
+    <EditText
+        android:id="@+id/createAccountLastName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:hint="@string/last_name"
+        android:inputType="text"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="@string/last_name" />
 
     <Button
         android:id="@+id/createAccountCancelButton"
