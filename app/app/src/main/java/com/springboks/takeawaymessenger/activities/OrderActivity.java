@@ -1,4 +1,4 @@
-package com.springboks.takeawaymessenger.Activities;
+package com.springboks.takeawaymessenger.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.springboks.takeawaymessenger.Adapters.OrderDetailsListAdapter;
-import com.springboks.takeawaymessenger.Model.Order;
-import com.springboks.takeawaymessenger.Model.OrderAdmin;
-import com.springboks.takeawaymessenger.Model.Product;
+import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
+import com.springboks.takeawaymessenger.model.Order;
+import com.springboks.takeawaymessenger.model.OrderAdmin;
+import com.springboks.takeawaymessenger.model.Product;
 import com.springboks.takeawaymessenger.R;
 
 import java.io.IOException;

@@ -5,24 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF8000"
-    tools:context=".activities.LoginActivity">
+    tools:context=".activities.LoginOrderActivity">
 
     <EditText
-        android:id="@+id/accountName"
+        android:id="@+id/orderNumberLogin"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
         android:background="@drawable/shadow"
         android:elevation="10dp"
+        android:gravity="center"
         android:padding="10dp"
-        android:text="Account name"
+        android:text="Order Number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/orderNumberLoginLogo"
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:layout_marginTop="25dp"
@@ -31,40 +32,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/takeawaylogo" />
 
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/shadow"
-        android:elevation="10dp"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:text="Password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.50"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountName" />
 
     <Button
-        android:id="@+id/loginOrderNumberButton"
+        android:id="@+id/orderNumberLoginCancelButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:backgroundTint="#1574F5"
-        android:text="Order number"
-        android:onClick="orderNumberStart"
+        android:text="Cancel"
+        android:onClick="cancelOrderNumber"
         android:textColor="#F6F6F6"
-        app:layout_constraintBottom_toTopOf="@+id/loginCreateAccountButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/loginCreateAccountButton"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#FFFFFF"
-        android:onClick="createAccount"
-        android:text="Create account"
         app:layout_constraintBottom_toTopOf="@+id/loginLoginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -76,20 +52,20 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="#FFFFFF"
         android:text="Login"
-        android:onClick="login"
+        android:onClick="orderNumberLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/loginForgotPassword"
+        android:id="@+id/orderNumberLoginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Forgot password?"
+        android:layout_marginBottom="10dp"
+        android:text="Please enter your order number"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/orderNumberLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.815"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

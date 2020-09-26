@@ -1,4 +1,4 @@
-package com.springboks.takeawaymessenger.Model;
+package com.springboks.takeawaymessenger.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -38,6 +38,15 @@ public class OrderAdmin {
         Order order1 = new Order(products, 2,  customer.getFirstName(), LocalDate.now(), LocalTime.now().plusHours(1), LocalTime.now().plusHours(1), true, customer, courier);
         orderList.add(order);
         orderList.add(order1);
+        orderList.add(order);
+        orderList.add(order1);
+        orderList.add(order);
+        orderList.add(order1);
+        orderList.add(order);
+        orderList.add(order1);
+        orderList.add(order);
+        orderList.add(order1);
+
 
     }
 

@@ -1,4 +1,4 @@
-package com.springboks.takeawaymessenger.Adapters;
+package com.springboks.takeawaymessenger.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
-import com.springboks.takeawaymessenger.Model.Product;
+import com.springboks.takeawaymessenger.model.Product;
 import com.springboks.takeawaymessenger.R;
 
 import java.util.List;

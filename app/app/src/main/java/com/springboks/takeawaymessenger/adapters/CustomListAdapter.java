@@ -1,4 +1,4 @@
-package com.springboks.takeawaymessenger.Adapters;
+package com.springboks.takeawaymessenger.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
-import com.springboks.takeawaymessenger.Model.Order;
+import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.R;
 
 import java.io.IOException;
