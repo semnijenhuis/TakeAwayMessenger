@@ -1,4 +1,4 @@
-package com.springboks.takeawaymessenger.Model;
+package com.springboks.takeawaymessenger.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

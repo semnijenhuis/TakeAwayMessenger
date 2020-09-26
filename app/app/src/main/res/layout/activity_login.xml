@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF8000"
-    tools:context=".Activities.LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <EditText
         android:id="@+id/accountName"
@@ -52,7 +52,7 @@
         android:layout_height="50dp"
         android:backgroundTint="#1574F5"
         android:text="Order number"
-        android:onClick="orderNumberstart"
+        android:onClick="orderNumberStart"
         android:textColor="#F6F6F6"
         app:layout_constraintBottom_toTopOf="@+id/loginCreateAccountButton"
         app:layout_constraintEnd_toEndOf="parent"

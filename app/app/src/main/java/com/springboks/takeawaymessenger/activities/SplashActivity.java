@@ -1,13 +1,8 @@
-package com.springboks.takeawaymessenger.Activities;
+package com.springboks.takeawaymessenger.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-
-
-import com.springboks.takeawaymessenger.R;
 
 public class SplashActivity extends AppCompatActivity {
 
