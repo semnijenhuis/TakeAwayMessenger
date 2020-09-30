@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.springboks.takeawaymessenger.DatabaseHandler;
 import com.springboks.takeawaymessenger.adapters.CustomListAdapter;
 import com.springboks.takeawaymessenger.model.OrderAdmin;
 import com.springboks.takeawaymessenger.R;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        DatabaseHandler dh = new DatabaseHandler();
+        dh.getData();
 
         setContentView(R.layout.activity_main);
 

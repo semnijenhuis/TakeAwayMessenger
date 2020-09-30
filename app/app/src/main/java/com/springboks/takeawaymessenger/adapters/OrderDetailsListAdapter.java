@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
+import com.springboks.takeawaymessenger.DatabaseHandler;
 import com.springboks.takeawaymessenger.model.Product;
 import com.springboks.takeawaymessenger.R;
 
@@ -24,6 +25,8 @@ public class OrderDetailsListAdapter extends ArrayAdapter {
         super(context, R.layout.order_details_list_item, objects);
         layoutInflater = LayoutInflater.from(context);
         productList = objects;
+        DatabaseHandler dh = new DatabaseHandler();
+        dh.execute();
     }
 
     @Override
