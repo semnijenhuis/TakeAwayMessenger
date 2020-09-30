@@ -1,6 +1,5 @@
-package com.springboks.takeawaymessenger.activities;
+package com.springboks.takeawaymessenger.Activities;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,8 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.springboks.takeawaymessenger.adapters.CustomListAdapter;
-import com.springboks.takeawaymessenger.model.OrderAdmin;
+import com.springboks.takeawaymessenger.Adapters.CustomListAdapter;
+import com.springboks.takeawaymessenger.Model.Order;
+import com.springboks.takeawaymessenger.Model.OrderAdmin;
 import com.springboks.takeawaymessenger.R;
 
 import java.util.List;
@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean loggedIn;
 
+    private OrderAdmin orderAdmin;
+    private List orders;
+    private CustomListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
