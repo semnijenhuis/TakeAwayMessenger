@@ -1,16 +1,14 @@
-package com.springboks.takeawaymessenger.Activities;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.springboks.takeawaymessenger.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.springboks.takeawaymessenger.Adapters.CustomListAdapter;
-import com.springboks.takeawaymessenger.Model.Order;
-import com.springboks.takeawaymessenger.Model.OrderAdmin;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import com.springboks.takeawaymessenger.adapters.CustomListAdapter;
+import com.springboks.takeawaymessenger.model.OrderAdmin;
 import com.springboks.takeawaymessenger.R;
 
 import java.util.List;
