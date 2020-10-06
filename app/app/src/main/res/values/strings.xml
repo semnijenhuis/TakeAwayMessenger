@@ -21,6 +21,7 @@
     <string name="login">Login</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="title_activity_create_customer">activity_create_customer</string>
+    <string name="hint_message">Enter message</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

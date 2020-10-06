@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.springboks.takeawaymessenger">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,15 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.ChatActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".activities.CreateCustomerActivity"
             android:label="@string/title_activity_create_customer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.SplashActivity" />
         <activity android:name=".activities.LoginOrderActivity" />
         <activity android:name=".activities.CreateCourierActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".activities.OrderActivity"
             android:label="@string/order_label" />
         <activity
@@ -31,6 +35,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

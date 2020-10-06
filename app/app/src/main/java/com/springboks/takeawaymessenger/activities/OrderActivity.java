@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
 import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.OrderAdmin;
@@ -28,12 +30,14 @@ public class OrderActivity extends AppCompatActivity {
     private ImageView imageView;
     private Order order;
     private TextView address;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         setContentView(R.layout.activity_order);
+        floatingActionButton = findViewById(R.id.messageButton);
 
         ListView listView = findViewById(R.id.orderDetailsList);
 
@@ -69,5 +73,10 @@ public class OrderActivity extends AppCompatActivity {
         adapter = new OrderDetailsListAdapter(this, products);
         listView.setAdapter(adapter);
 
+    }
+
+    public void onChatButtonPressed(View view) {
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
     }
 }

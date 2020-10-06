@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ChatActivity"
+    android:background="@drawable/chatscreen_">
+
+    <TextView
+        android:id="@+id/chat_banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:text="Chat"
+        android:fontFamily="@font/open_sans_light"
+        android:textSize="50sp"
+        android:textColor="@color/white"
+        android:elevation="2dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/conversation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/chat_banner"
+        android:layout_above="@+id/chat_user_input"/>
+
+    <EditText
+        android:id="@+id/chat_user_input"
+        android:imeActionId="4"
+        android:imeOptions="actionSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/open_sans_light"
+        android:background="@drawable/bg_edit_text"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:elevation="3dp"
+        android:hint="@string/hint_message"
+        android:inputType="text"
+        />
+
+    <ImageView
+        android:id="@+id/sendMessage"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_baseline_send_24"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="9dp"
+        android:elevation="2dp"/>
+
+    <ImageView
+        android:id="@+id/addPicture"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_baseline_add_24"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="11dp"
+        android:elevation="2dp"/>
+
+
+
+
+</RelativeLayout>
