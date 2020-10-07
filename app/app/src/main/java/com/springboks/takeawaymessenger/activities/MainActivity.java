@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
 
         DatabaseHandler dh = new DatabaseHandler();
-        dh.getData();
+        dh.addData();
 
         setContentView(R.layout.activity_main);
 

@@ -26,7 +26,7 @@ public class OrderDetailsListAdapter extends ArrayAdapter {
         layoutInflater = LayoutInflater.from(context);
         productList = objects;
         DatabaseHandler dh = new DatabaseHandler();
-        dh.execute();
+        dh.addData();
     }
 
     @Override
