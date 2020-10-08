@@ -65,9 +65,14 @@ public class DatabaseHandler {
                     List<Order> orders = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (!document.getData().isEmpty()) {
-                            int orderId = document.getData().get(String);
+                            int orderId =Integer.parseInt( document.getData().get("orderId").toString());
+                            String restaurantName = document.getData().get("restaurantName").toString();
+                            String date = document.getData().get("date").toString();
+                            String selectedDeliveryTime = document.getData().get("selectedDeliveryTime").toString();
+                            String actualDeliveryTime = document.getData().get("actualDeliveryTime").toString();
+                            boolean open = Boolean.parseBoolean( document.getData().get("open").toString());
 
-                            Order order = new Order( 1, "eee", "2", "LocalTime.now().plusHours(1)", "LocalTime.now().plusHours(1)", true, 1, 1);
+                            Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, 1, 1);
                             orders.add(order);
                         }
 
