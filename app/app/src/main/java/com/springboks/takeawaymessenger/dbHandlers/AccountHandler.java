@@ -12,6 +12,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.springboks.takeawaymessenger.model.Courier;
+import com.springboks.takeawaymessenger.model.Customer;
 import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.User;
 
@@ -27,7 +29,7 @@ public class AccountHandler {
     }
     private AccountHandler.onAccountsReceivedListener listener;
 
-    public AccountHandler(int id) {
+    public AccountHandler() {
         db = FirebaseFirestore.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
         this.listener= null;
@@ -42,7 +44,7 @@ public class AccountHandler {
 
 
     public void getAccounts() {
-        CollectionReference ordersRef = db.collection("orders");
+        CollectionReference ordersRef = db.collection("users");
 
         ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -51,15 +53,21 @@ public class AccountHandler {
                     List<User> accounts = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (!document.getData().isEmpty()) {
-                            int orderId =Integer.parseInt( document.getData().get("orderId").toString());
-                            String restaurantName = document.getData().get("restaurantName").toString();
-                            String date = document.getData().get("date").toString();
-                            String selectedDeliveryTime = document.getData().get("selectedDeliveryTime").toString();
-                            String actualDeliveryTime = document.getData().get("actualDeliveryTime").toString();
-                            boolean open = Boolean.parseBoolean( document.getData().get("open").toString());
+                            int userId =Integer.parseInt( document.getData().get("userId").toString());
+                            String firstName = document.getData().get("firstName").toString();
+                            String lastName = document.getData().get("lastName").toString();
+                            String userName = document.getData().get("userName").toString();
+                            String password = document.getData().get("password").toString();
+                            boolean isCourier = Boolean.parseBoolean( document.getData().get("isCourier").toString());
 
-//                            User user = new User();
-//                            accounts.add(user);
+                            if(isCourier){
+                                Courier courier = new Courier(userId,firstName,lastName,userName,password);
+                                accounts.add(courier);
+                            } else {
+                                String address = document.getData().get("address").toString();
+                                Customer customer = new Customer(userId,firstName,lastName,userName,password,address);
+                                accounts.add(customer);
+                            }
                         }
 
                         Log.d("DBHandlerG", document.getId() + " => " + document.getData());

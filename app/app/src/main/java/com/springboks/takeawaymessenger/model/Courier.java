@@ -6,13 +6,14 @@ public class Courier extends User {
 
     private ArrayList<Order> orders;
 
-    public Courier(String firstName, String lastName, String userName, String passWord, ArrayList<Order> orders) {
-        super(firstName, lastName, userName, passWord);
+    public Courier(int userId, String firstName, String lastName, String userName, String passWord, ArrayList<Order> orders) {
+        super(userId, firstName, lastName, userName, passWord);
         this.orders = new ArrayList<Order>();
     }
 
-    public Courier(String firstName, String lastName, String userName, String passWord) {
-        super(firstName, lastName, userName, passWord);
+    public Courier(int userId, String firstName, String lastName, String userName, String passWord) {
+        super(userId, firstName, lastName, userName, passWord);
+        this.orders = new ArrayList<Order>();
     }
 
     public ArrayList<Order> getOrders() {

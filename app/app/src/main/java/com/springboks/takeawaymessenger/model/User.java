@@ -10,11 +10,12 @@ public abstract class User {
     private String userName;
     private String passWord;
 
-    public User (String firstName, String lastName, String userName, String passWord){
+    public User (int userID ,String firstName, String lastName, String userName, String passWord){
+        this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.passWord = BCrypt.hashpw(passWord, BCrypt.gensalt());
+        this.passWord = passWord;
     }
 
     public int getUserID() {

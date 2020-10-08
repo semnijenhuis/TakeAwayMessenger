@@ -31,8 +31,8 @@ public class OrderAdmin {
         products.add(product);
         products.add(product1);
 
-        Customer customer = new Customer("Stephen", "Nedd", "stephennedd", "password", "Saxionweg 1");
-        Courier courier = new Courier("Sem", "Nijenhuis", "semnijenhuis", "password");
+//        Customer customer = new Customer("Stephen", "Nedd", "stephennedd", "password", "Saxionweg 1");
+//        Courier courier = new Courier("Sem", "Nijenhuis", "semnijenhuis", "password");
 
 //        Order order = new Order(products, 1, customer.getFirstName(), LocalDate.now(), LocalTime.now().plusHours(1), LocalTime.now().plusHours(1), true, customer, courier);
 //        Order order1 = new Order(products, 2,  customer.getFirstName(), LocalDate.now(), LocalTime.now().plusHours(1), LocalTime.now().plusHours(1), true, customer, courier);

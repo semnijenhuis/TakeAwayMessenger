@@ -71,8 +71,10 @@ public class OrderHandler {
                             String selectedDeliveryTime = document.getData().get("selectedDeliveryTime").toString();
                             String actualDeliveryTime = document.getData().get("actualDeliveryTime").toString();
                             boolean open = Boolean.parseBoolean( document.getData().get("open").toString());
+                            int customerId = Integer.parseInt(document.getData().get("customerId").toString());
+                            int courierId = Integer.parseInt(document.getData().get("courierId").toString());
 
-                            Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, 1, 1);
+                            Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId);
                             orders.add(order);
                         }
 

@@ -21,10 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean loggedIn;
     List<Order> orders;
+    int userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (!loggedIn) {
 
             Intent intent = new Intent(this, LoginActivity.class);
@@ -45,8 +46,19 @@ public class MainActivity extends AppCompatActivity {
         db.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
             @Override
             public void displayOrders(List<Order> ordersFromDatabase) {
+                Intent intent= getIntent();
+                userId = intent.getIntExtra("userId",0);
                 orders = ordersFromDatabase;
-                CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), orders);
+                List<Order> usersOrders = new ArrayList<>();
+                for (Order order: usersOrders
+                     ) {
+                    System.out.println("courierId = " + order.getCourierId() + "customerId = " + order.getCustomerId() + "intentId = " + userId );
+                    if (order.getCourierId() == userId || order.getCustomerId() == userId  ){
+                        usersOrders.add(order);
+                    }
+                }
+
+                CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), usersOrders);
                 listView.setAdapter(adapter);
 
 

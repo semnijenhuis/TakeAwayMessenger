@@ -7,14 +7,14 @@ public class Customer extends User {
     private String address;
     private ArrayList<Order> orders;
 
-    public Customer(String firstName, String lastName, String userName, String passWord, String address, ArrayList<Order> orders) {
-        super(firstName, lastName, userName, passWord);
+    public Customer(int userId, String firstName, String lastName, String userName, String passWord, String address, ArrayList<Order> orders) {
+        super( userId, firstName, lastName, userName, passWord);
         this.address = address;
         this.orders = new ArrayList<Order>();
     }
 
-    public Customer(String firstName, String lastName, String userName, String passWord, String address) {
-        super(firstName, lastName, userName, passWord);
+    public Customer(int userId, String firstName, String lastName, String userName, String passWord, String address) {
+        super(userId, firstName, lastName, userName, passWord);
         this.address = address;
 
     }

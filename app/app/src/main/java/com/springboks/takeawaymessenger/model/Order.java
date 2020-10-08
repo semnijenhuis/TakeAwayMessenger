@@ -14,13 +14,13 @@ private String date;
 private String selectedDeliveryTime;
 private String actualDeliveryTime;
 private boolean open;
-private int customer;
-private int courier;
+private int customerId;
+private int courierId;
 private String imageFile;
 private ArrayList<Message> customerMessages;
 private ArrayList<Message> courierMessages;
 
-    public Order( int orderID, String name, String date, String selectedDeliveryTime, String actualDeliveryTime, boolean open, int customer, int courier) {
+    public Order( int orderID, String name, String date, String selectedDeliveryTime, String actualDeliveryTime, boolean open, int customerId, int courierId) {
         products = new ArrayList<>();
         this.orderID = orderID;
         this.name = name;
@@ -28,8 +28,8 @@ private ArrayList<Message> courierMessages;
         this.selectedDeliveryTime = selectedDeliveryTime;
         this.actualDeliveryTime = actualDeliveryTime;
         this.open = open;
-        this.customer = customer;
-        this.courier = courier;
+        this.customerId = customerId;
+        this.courierId = courierId;
         imageFile = "subway.png";
     }
 
@@ -89,17 +89,17 @@ private ArrayList<Message> courierMessages;
         this.open = open;
     }
 
-    public int getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
 //    public void setCustomer(Customer customer) {
 //        this.customer = customer;
 //    }
 //
-//    public Courier getCourier() {
-//        return courier;
-//    }
+    public int getCourierId() {
+        return courierId;
+    }
 //
 //    public void setCourier(Courier courier) {
 //        this.courier = courier;

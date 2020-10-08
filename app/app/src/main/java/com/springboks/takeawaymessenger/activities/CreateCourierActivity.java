@@ -35,7 +35,7 @@ public class CreateCourierActivity extends AppCompatActivity {
         String password = passwordInput.getText().toString();
 
         //TODO: desing customer create account
-        Courier newUser = new Courier(firstName,lastName,userName,password);
+      //  Courier newUser = new Courier(firstName,lastName,userName,password);
 
         Intent intent = new Intent(this, OrderActivity.class);
         startActivity(intent);
