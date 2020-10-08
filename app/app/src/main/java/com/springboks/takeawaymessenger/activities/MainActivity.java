@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        DatabaseHandler dh = new DatabaseHandler();
-        dh.addData();
 
         setContentView(R.layout.activity_main);
 
@@ -43,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         OrderAdmin orderAdmin = new OrderAdmin();
         List orders = OrderAdmin.orderList;
+
+        DatabaseHandler db = new DatabaseHandler();
+        db.getOrders(1);
+
+        db.setOnOrdersReceivedListener(new OnOrdersReceivedListener(List<Order> orders) {
+            // update UI
+        });
 
         if (orders.size() == 0) {
             orderAdmin.setOrderList();

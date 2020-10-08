@@ -51,7 +51,7 @@ public class CustomListAdapter extends ArrayAdapter {
             name.setText(order.getName());
 
             addres = convertView.findViewById(R.id.orderAddresID);
-            addres.setText(order.getCustomer().getAddress());
+            addres.setText("order.getCustomer().getAddress()");
 
             deliveryTime = convertView.findViewById(R.id.orderDeliverytimeID);
             deliveryTime.setText("Delivery Time: " + order.getActualDeliveryTime().toString());

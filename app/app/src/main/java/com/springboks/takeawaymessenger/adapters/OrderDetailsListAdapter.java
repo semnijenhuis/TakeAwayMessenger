@@ -25,8 +25,6 @@ public class OrderDetailsListAdapter extends ArrayAdapter {
         super(context, R.layout.order_details_list_item, objects);
         layoutInflater = LayoutInflater.from(context);
         productList = objects;
-        DatabaseHandler dh = new DatabaseHandler();
-        dh.addData();
     }
 
     @Override

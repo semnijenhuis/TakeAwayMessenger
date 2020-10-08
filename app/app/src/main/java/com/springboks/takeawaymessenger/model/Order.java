@@ -10,18 +10,18 @@ public class Order {
 private ArrayList<Product> products;
 private int orderID;
 private String name;
-private LocalDate date;
-private LocalTime selectedDeliveryTime;
-private LocalTime actualDeliveryTime;
+private String date;
+private String selectedDeliveryTime;
+private String actualDeliveryTime;
 private boolean open;
-private Customer customer;
-private Courier courier;
+private int customer;
+private int courier;
 private String imageFile;
 private ArrayList<Message> customerMessages;
 private ArrayList<Message> courierMessages;
 
-    public Order(ArrayList<Product> products, int orderID, String name, LocalDate date, LocalTime selectedDeliveryTime, LocalTime actualDeliveryTime, boolean open, Customer customer, Courier courier) {
-        this.products = products;
+    public Order( int orderID, String name, String date, String selectedDeliveryTime, String actualDeliveryTime, boolean open, int customer, int courier) {
+        products = new ArrayList<>();
         this.orderID = orderID;
         this.name = name;
         this.date = date;
@@ -57,29 +57,29 @@ private ArrayList<Message> courierMessages;
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
+//    public LocalDate getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(LocalDate date) {
+//        this.date = date;
+//    }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getSelectedDeliveryTime() {
+    public String getSelectedDeliveryTime() {
         return selectedDeliveryTime;
     }
 
-    public void setSelectedDeliveryTime(LocalTime selectedDeliveryTime) {
-        this.selectedDeliveryTime = selectedDeliveryTime;
-    }
+//    public void setSelectedDeliveryTime(LocalTime selectedDeliveryTime) {
+//        this.selectedDeliveryTime = selectedDeliveryTime;
+//    }
 
-    public LocalTime getActualDeliveryTime() {
+    public String getActualDeliveryTime() {
         return actualDeliveryTime;
     }
 
-    public void setActualDeliveryTime(LocalTime actualDeliveryTime) {
-        this.actualDeliveryTime = actualDeliveryTime;
-    }
+//    public void setActualDeliveryTime(LocalTime actualDeliveryTime) {
+//        this.actualDeliveryTime = actualDeliveryTime;
+//    }
 
     public boolean isOpen() {
         return open;
@@ -89,21 +89,21 @@ private ArrayList<Message> courierMessages;
         this.open = open;
     }
 
-    public Customer getCustomer() {
+    public int getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Courier getCourier() {
-        return courier;
-    }
-
-    public void setCourier(Courier courier) {
-        this.courier = courier;
-    }
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
+//
+//    public Courier getCourier() {
+//        return courier;
+//    }
+//
+//    public void setCourier(Courier courier) {
+//        this.courier = courier;
+//    }
 
     public ArrayList<Message> getCustomerMessages() {
         return customerMessages;

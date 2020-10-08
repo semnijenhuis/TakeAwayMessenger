@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.FirebaseDatabase;
+import com.springboks.takeawaymessenger.DatabaseHandler;
 import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
 import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.OrderAdmin;
@@ -31,6 +33,7 @@ public class OrderActivity extends AppCompatActivity {
     private Order order;
     private TextView address;
     private FloatingActionButton floatingActionButton;
+    private DatabaseHandler dh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,9 @@ public class OrderActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.orderDetailsList);
 
         position = intent.getIntExtra("listItemPosition", 0);
-        orders = OrderAdmin.orderList;
+
+        dh = new DatabaseHandler();
+        dh.getOrders(1);
         products = orders.get(position).getProducts();
         order = orders.get(position);
 
@@ -68,7 +73,7 @@ public class OrderActivity extends AppCompatActivity {
         }
 
         address = findViewById(R.id.orderpage_addressID);
-        address.setText(order.getCustomer().getAddress());
+        address.setText("placeholder address");
 
         adapter = new OrderDetailsListAdapter(this, products);
         listView.setAdapter(adapter);
