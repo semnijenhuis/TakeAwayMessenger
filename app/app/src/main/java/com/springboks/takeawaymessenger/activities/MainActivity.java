@@ -11,15 +11,17 @@ import android.widget.ListView;
 
 import com.springboks.takeawaymessenger.DatabaseHandler;
 import com.springboks.takeawaymessenger.adapters.CustomListAdapter;
+import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.OrderAdmin;
 import com.springboks.takeawaymessenger.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     public static boolean loggedIn;
-
+    List<Order> orders;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,24 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ListView listView = findViewById(R.id.orderList);
+        final ListView listView = findViewById(R.id.orderList);
+        orders = new ArrayList<>();
 
-        OrderAdmin orderAdmin = new OrderAdmin();
-        List orders = OrderAdmin.orderList;
+        DatabaseHandler db = new DatabaseHandler(1);
+        db.setOnOrdersReceivedListener(new DatabaseHandler.onOrdersReceivedListener() {
+            @Override
+            public void displayOrders(List<Order> ordersFromDatabase) {
+                orders = ordersFromDatabase;
+                CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), orders);
+                listView.setAdapter(adapter);
 
-        DatabaseHandler db = new DatabaseHandler();
-        db.getOrders(1);
 
-        db.setOnOrdersReceivedListener(new OnOrdersReceivedListener(List<Order> orders) {
-            // update UI
+            }
         });
 
-        if (orders.size() == 0) {
-            orderAdmin.setOrderList();
-            orders = orderAdmin.getOrderList();
-        }
-
-        CustomListAdapter adapter = new CustomListAdapter(this, orders);
+//        if (orders.size() == 0) {
+//            orderAdmin.setOrderList();
+//            orders = orderAdmin.getOrderList();
+//        }
+        CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), orders);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 whenOrderClicked(position);
             }
         });
+
     }
 
     private void whenOrderClicked(int position) {

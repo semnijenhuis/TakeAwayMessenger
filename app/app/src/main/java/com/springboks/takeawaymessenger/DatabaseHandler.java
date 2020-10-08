@@ -36,25 +36,44 @@ public class DatabaseHandler {
     private FirebaseFirestore db;
     private DatabaseReference rootRef;
 
-    public DatabaseHandler() {
+    public interface onOrdersReceivedListener{
+        public void displayOrders(List<Order> orders);
+    }
+    private onOrdersReceivedListener listener;
+
+    public DatabaseHandler(int id) {
         db = FirebaseFirestore.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
+        this.listener= null;
+        getOrders(id);
     }
+
+    public void setOnOrdersReceivedListener(onOrdersReceivedListener listener){
+        this.listener = listener;
+    }
+
+
+
 
     public void getOrders(int accountId) {
         CollectionReference ordersRef = db.collection("orders");
-        final List<Order> orders = new ArrayList<Order>();
 
         ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
+                    List<Order> orders = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (!document.getData().isEmpty()) {
+                            int orderId = document.getData().get(String);
 
+                            Order order = new Order( 1, "eee", "2", "LocalTime.now().plusHours(1)", "LocalTime.now().plusHours(1)", true, 1, 1);
+                            orders.add(order);
                         }
+
                         Log.d("DBHandlerG", document.getId() + " => " + document.getData());
                     }
+                    listener.displayOrders(orders);
                 } else {
                     Log.d("DBHandlerG", "Error getting documents: ", task.getException());
                 }

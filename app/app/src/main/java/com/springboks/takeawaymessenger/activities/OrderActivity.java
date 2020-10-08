@@ -46,10 +46,10 @@ public class OrderActivity extends AppCompatActivity {
 
         position = intent.getIntExtra("listItemPosition", 0);
 
-        dh = new DatabaseHandler();
-        dh.getOrders(1);
-        products = orders.get(position).getProducts();
+        //TODO: load order with position from database
         order = orders.get(position);
+        products = order.getProducts();
+
 
         imageView = findViewById(R.id.orderpage_ImageID);
         InputStream inputStream = null;
