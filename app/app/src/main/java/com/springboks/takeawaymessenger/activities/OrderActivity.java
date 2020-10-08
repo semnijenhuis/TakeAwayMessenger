@@ -12,11 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.FirebaseDatabase;
-import com.springboks.takeawaymessenger.DatabaseHandler;
+import com.springboks.takeawaymessenger.dbHandlers.OrderHandler;
 import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
 import com.springboks.takeawaymessenger.model.Order;
-import com.springboks.takeawaymessenger.model.OrderAdmin;
 import com.springboks.takeawaymessenger.model.Product;
 import com.springboks.takeawaymessenger.R;
 
@@ -33,7 +31,7 @@ public class OrderActivity extends AppCompatActivity {
     private Order order;
     private TextView address;
     private FloatingActionButton floatingActionButton;
-    private DatabaseHandler dh;
+    private OrderHandler dh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

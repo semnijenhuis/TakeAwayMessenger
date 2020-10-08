@@ -9,10 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.springboks.takeawaymessenger.DatabaseHandler;
+import com.springboks.takeawaymessenger.dbHandlers.OrderHandler;
 import com.springboks.takeawaymessenger.adapters.CustomListAdapter;
 import com.springboks.takeawaymessenger.model.Order;
-import com.springboks.takeawaymessenger.model.OrderAdmin;
 import com.springboks.takeawaymessenger.R;
 
 import java.util.ArrayList;
@@ -42,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         final ListView listView = findViewById(R.id.orderList);
         orders = new ArrayList<>();
 
-        DatabaseHandler db = new DatabaseHandler(1);
-        db.setOnOrdersReceivedListener(new DatabaseHandler.onOrdersReceivedListener() {
+        OrderHandler db = new OrderHandler(1);
+        db.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
             @Override
             public void displayOrders(List<Order> ordersFromDatabase) {
                 orders = ordersFromDatabase;

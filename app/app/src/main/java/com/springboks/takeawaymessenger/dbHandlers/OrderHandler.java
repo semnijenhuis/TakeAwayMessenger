@@ -1,4 +1,4 @@
-package com.springboks.takeawaymessenger;
+package com.springboks.takeawaymessenger.dbHandlers;
 
 import android.util.Log;
 
@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DatabaseHandler {
+public class OrderHandler {
     private FirebaseFirestore db;
     private DatabaseReference rootRef;
 
@@ -41,7 +41,7 @@ public class DatabaseHandler {
     }
     private onOrdersReceivedListener listener;
 
-    public DatabaseHandler(int id) {
+    public OrderHandler(int id) {
         db = FirebaseFirestore.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
         this.listener= null;
@@ -86,65 +86,4 @@ public class DatabaseHandler {
         });
     }
 }
-
-//        /
-
-//        }
-
-
-
-
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    Integer orderId = ds.child("orderId").getValue(Integer.class);
-//                    String restaurantName = ds.child("restaurantName").getValue(String.class);
-//                    Integer courierId = ds.child("courierId").getValue(Integer.class);
-//                    Integer customerId = ds.child("customerId").getValue(Integer.class);
-//                    String date = ds.child("date").getValue(String.class);
-//                    String selectedDeliverTime= ds.child("selectedDeliveryTime").getValue(String.class);
-//                    String actualDeliverTime= ds.child("actualDeliveryTime").getValue(String.class);
-//                    Boolean open = ds.child("open").getValue(Boolean.class);
-//                    Order order = new Order(orderId,restaurantName,date,selectedDeliverTime,actualDeliverTime,open,customerId,courierId);
-//
-//                    System.out.println("AAAAAAAAAAAAAAAAAAAAAA "+ restaurantName);
-//                    orders.add(order);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {}
-//        };
-//        return orders;
-//    }
-
-//    public List<Order> getProducts(int orderId){
-//        DatabaseReference tripsRef = rootRef.child("products");
-//        final List<Product> products = new ArrayList<Product>();
-//
-//        ValueEventListener valueEventListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    Integer orderId = ds.child("orderId").getValue(Integer.class);
-//                    String restaurantName = ds.child("restaurantName").getValue(String.class);
-//                    Integer courierId = ds.child("courierId").getValue(Integer.class);
-//                    Integer customerId = ds.child("customerId").getValue(Integer.class);
-//                    String date = ds.child("date").getValue(String.class);
-//                    String selectedDeliverTime= ds.child("selectedDeliveryTime").getValue(String.class);
-//                    String actualDeliverTime= ds.child("actualDeliveryTime").getValue(String.class);
-//                    Order order = new Order()
-//                    orders.add(time);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {}
-//        };
-//        tripsRef.addListenerForSingleValueEvent(valueEventListener);
-//        return orders;
-//    }
-//}
 

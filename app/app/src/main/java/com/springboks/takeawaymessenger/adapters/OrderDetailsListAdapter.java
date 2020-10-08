@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
-import com.springboks.takeawaymessenger.DatabaseHandler;
 import com.springboks.takeawaymessenger.model.Product;
 import com.springboks.takeawaymessenger.R;
 
