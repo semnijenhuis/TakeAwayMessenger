@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             public void displayAccounts(List<User> accounts) {
                 String enteredUserName = userNameField.getText().toString();
                 String enteredPassword = passwordField.getText().toString();
+                boolean accountMatch = false;
 
                 for (User user: accounts
                      ) {
@@ -68,10 +69,15 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("userId", user.getUserID());
                         startActivity(intent);
                         MainActivity.loggedIn = true;
-                    } else {
-                        System.out.println("wrong!");
+                        accountMatch= true;
+
                     }
                 }
+                if(!accountMatch){
+                    Toast.makeText(view.getContext(), "Username or password incorrect", Toast.LENGTH_SHORT).show();
+                    System.out.println("wrong!");
+                }
+
             }
         });
 

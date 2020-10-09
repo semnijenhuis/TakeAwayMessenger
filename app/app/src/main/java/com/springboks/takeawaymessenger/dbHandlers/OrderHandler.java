@@ -55,7 +55,7 @@ public class OrderHandler {
 
 
 
-    public void getOrders(int accountId) {
+    public void getOrders(final int accountId) {
         CollectionReference ordersRef = db.collection("orders");
 
         ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -75,7 +75,9 @@ public class OrderHandler {
                             int courierId = Integer.parseInt(document.getData().get("courierId").toString());
 
                             Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId);
-                            orders.add(order);
+                            if(accountId == courierId || accountId == customerId){
+                                orders.add(order);
+                            }
                         }
 
                         Log.d("DBHandlerG", document.getId() + " => " + document.getData());

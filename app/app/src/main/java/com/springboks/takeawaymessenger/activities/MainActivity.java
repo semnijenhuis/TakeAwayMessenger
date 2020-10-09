@@ -42,35 +42,29 @@ public class MainActivity extends AppCompatActivity {
         final ListView listView = findViewById(R.id.orderList);
         orders = new ArrayList<>();
 
-        OrderHandler db = new OrderHandler(1);
+        Intent intent= getIntent();
+        userId = intent.getIntExtra("userId",0);
+        OrderHandler db = new OrderHandler(userId);
         db.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
             @Override
             public void displayOrders(List<Order> ordersFromDatabase) {
-                Intent intent= getIntent();
-                userId = intent.getIntExtra("userId",0);
                 orders = ordersFromDatabase;
-                List<Order> usersOrders = new ArrayList<>();
-                for (Order order: usersOrders
-                     ) {
-                    System.out.println("courierId = " + order.getCourierId() + "customerId = " + order.getCustomerId() + "intentId = " + userId );
-                    if (order.getCourierId() == userId || order.getCustomerId() == userId  ){
-                        usersOrders.add(order);
-                    }
-                }
+//                List<Order> usersOrders = new ArrayList<>();
+//                for (Order order: orders
+//                     ) {
+//                    System.out.println("courierId = " + order.getCourierId() + "customerId = " + order.getCustomerId() + "intentId = " + userId );
+//                    if (order.getCourierId() == userId || order.getCustomerId() == userId  ){
+//                        usersOrders.add(order);
+//                    }
+//                }
 
-                CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), usersOrders);
+                CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), orders);
                 listView.setAdapter(adapter);
 
 
             }
         });
 
-//        if (orders.size() == 0) {
-//            orderAdmin.setOrderList();
-//            orders = orderAdmin.getOrderList();
-//        }
-        CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), orders);
-        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -83,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private void whenOrderClicked(int position) {
         Intent intent = new Intent(this, OrderActivity.class);
         intent.putExtra("ListItemPosition", position);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 

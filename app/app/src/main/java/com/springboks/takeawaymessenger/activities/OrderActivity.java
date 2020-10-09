@@ -20,6 +20,7 @@ import com.springboks.takeawaymessenger.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class OrderActivity extends AppCompatActivity {
     private TextView address;
     private FloatingActionButton floatingActionButton;
     private OrderHandler dh;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,42 +42,49 @@ public class OrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order);
         floatingActionButton = findViewById(R.id.messageButton);
 
-        ListView listView = findViewById(R.id.orderDetailsList);
+        final ListView listView = findViewById(R.id.orderDetailsList);
 
         position = intent.getIntExtra("listItemPosition", 0);
+        userId = intent.getIntExtra("userId",0);
+        dh = new OrderHandler(userId);
+        dh.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
+            @Override
+            public void displayOrders(List<Order> ordersFromDatabase) {
 
-        //TODO: load order with position from database
-        order = orders.get(position);
-        products = order.getProducts();
+                orders = ordersFromDatabase;
 
+                System.out.println(position + " = position ");
+                order = orders.get(position);
+                products = order.getProducts();
 
-        imageView = findViewById(R.id.orderpage_ImageID);
-        InputStream inputStream = null;
-        try {
-            String imageFile = order.getImageFile();
-            Log.i("Yoo", imageFile);
+                imageView = findViewById(R.id.orderpage_ImageID);
+                InputStream inputStream = null;
+                try {
+                    String imageFile = order.getImageFile();
 
-            inputStream = getAssets().open(imageFile);
-            Drawable d = Drawable.createFromStream(inputStream, null);
-            imageView.setImageDrawable(d);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            try {
-                if (inputStream != null) {
-                    inputStream.close();
+                    inputStream = getAssets().open(imageFile);
+                    Drawable d = Drawable.createFromStream(inputStream, null);
+                    imageView.setImageDrawable(d);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    try {
+                        if (inputStream != null) {
+                            inputStream.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                address = findViewById(R.id.orderpage_addressID);
+                address.setText("placeholder address");
+
+                adapter = new OrderDetailsListAdapter(listView.getContext(), products);
+                listView.setAdapter(adapter);
+
+
             }
-        }
-
-        address = findViewById(R.id.orderpage_addressID);
-        address.setText("placeholder address");
-
-        adapter = new OrderDetailsListAdapter(this, products);
-        listView.setAdapter(adapter);
-
+        });
     }
 
     public void onChatButtonPressed(View view) {
