@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Order {
 
-private ArrayList<Product> products;
+private ArrayList<Integer> productIds;
 private int orderID;
 private String name;
 private String date;
@@ -20,8 +20,8 @@ private String imageFile;
 private ArrayList<Message> customerMessages;
 private ArrayList<Message> courierMessages;
 
-    public Order( int orderID, String name, String date, String selectedDeliveryTime, String actualDeliveryTime, boolean open, int customerId, int courierId) {
-        products = new ArrayList<>();
+    public Order( int orderID, String name, String date, String selectedDeliveryTime, String actualDeliveryTime, boolean open, int customerId, int courierId, ArrayList<Integer> productIds) {
+        this.productIds = productIds;
         this.orderID = orderID;
         this.name = name;
         this.date = date;
@@ -33,12 +33,12 @@ private ArrayList<Message> courierMessages;
         imageFile = "subway.png";
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Integer> getProducts() {
+        return productIds;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
+    public void setProducts(ArrayList<Integer> products) {
+        this.productIds = products;
     }
 
     public int getOrderID() {

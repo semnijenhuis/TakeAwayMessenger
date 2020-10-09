@@ -36,8 +36,8 @@ public class OrderDetailsListAdapter extends ArrayAdapter {
 
         if (convertView != null) {
             quantity = convertView.findViewById(R.id.list_quantity);
-            String temp = Integer.toString(product.getQuantity());
-            quantity.setText(temp + "x ");
+//            String temp = Integer.toString(product.getQuantity());
+//            quantity.setText(temp + "x ");
 
             description = convertView.findViewById(R.id.list_description);
             description.setText(product.getDescription());

@@ -4,12 +4,12 @@ public class Product {
 
     private String description;
     private double price;
-    private int quantity;
+    private int productId;
 
-    public Product(String description, double price, int quantity) {
+    public Product(String description, double price, int productId) {
         this.description = description;
         this.price = price;
-        this.quantity = quantity;
+        this.productId = productId;
     }
 
     public String getDescription() {
@@ -28,11 +28,4 @@ public class Product {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

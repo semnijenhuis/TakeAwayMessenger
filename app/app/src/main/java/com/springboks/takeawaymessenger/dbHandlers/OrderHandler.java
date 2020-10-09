@@ -28,6 +28,7 @@ import com.springboks.takeawaymessenger.model.Product;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,8 +74,19 @@ public class OrderHandler {
                             boolean open = Boolean.parseBoolean( document.getData().get("open").toString());
                             int customerId = Integer.parseInt(document.getData().get("customerId").toString());
                             int courierId = Integer.parseInt(document.getData().get("courierId").toString());
+//                            String num = document.getData().get("productIds").toString();
+//                            String[] numArr = num.split(",");
+//                            System.out.println(numArr);
 
-                            Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId);
+
+                           ArrayList<Integer> productIds = new ArrayList<>();
+
+                            for (int i = 0; i < productIds.size() ; i++) {
+                                System.out.println("AAAAAAA" + productIds.get(i));
+                            }
+
+
+                            Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId,productIds);
                             if(accountId == courierId || accountId == customerId){
                                 orders.add(order);
                             }

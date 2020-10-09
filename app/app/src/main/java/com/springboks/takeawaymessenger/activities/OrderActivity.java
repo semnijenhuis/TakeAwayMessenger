@@ -55,7 +55,7 @@ public class OrderActivity extends AppCompatActivity {
 
                 System.out.println(position + " = position ");
                 order = orders.get(position);
-                products = order.getProducts();
+                products = new ArrayList<>();
 
                 imageView = findViewById(R.id.orderpage_ImageID);
                 InputStream inputStream = null;
