@@ -28,4 +28,7 @@ public class Product {
         this.price = price;
     }
 
+    public int getProductId() {
+        return productId;
+    }
 }

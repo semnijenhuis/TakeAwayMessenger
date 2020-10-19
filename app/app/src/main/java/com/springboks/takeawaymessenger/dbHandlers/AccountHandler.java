@@ -14,7 +14,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.springboks.takeawaymessenger.model.Courier;
 import com.springboks.takeawaymessenger.model.Customer;
-import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.User;
 
 import java.util.ArrayList;

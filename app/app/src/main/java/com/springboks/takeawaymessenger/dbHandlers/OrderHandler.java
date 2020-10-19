@@ -29,6 +29,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,17 +75,18 @@ public class OrderHandler {
                             boolean open = Boolean.parseBoolean( document.getData().get("open").toString());
                             int customerId = Integer.parseInt(document.getData().get("customerId").toString());
                             int courierId = Integer.parseInt(document.getData().get("courierId").toString());
-//                            String num = document.getData().get("productIds").toString();
-//                            String[] numArr = num.split(",");
-//                            System.out.println(numArr);
 
+                            ArrayList<Integer> productIds = new ArrayList<>();
+                            if(document.getData().get("productIds") != null){
+                                Object pIds = document.getData().get("productIds");
+                                String[] values = String.valueOf(pIds).replace("[", "").replace("]", "").replace(" ", "").split(",");
+                                for (int i = 0; i < values.length ; i++) {
+                                    productIds.add(Integer.parseInt(values[i]));
 
-                           ArrayList<Integer> productIds = new ArrayList<>();
-
-                            for (int i = 0; i < productIds.size() ; i++) {
-                                System.out.println("AAAAAAA" + productIds.get(i));
+                                }
                             }
 
+                            System.out.println("pids =" + productIds);
 
                             Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId,productIds);
                             if(accountId == courierId || accountId == customerId){

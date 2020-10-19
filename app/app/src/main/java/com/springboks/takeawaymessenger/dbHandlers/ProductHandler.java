@@ -27,11 +27,11 @@ public class ProductHandler {
     }
     private onProductsReceivedListener listener;
 
-    public ProductHandler(int id) {
+    public ProductHandler(Order order) {
         db = FirebaseFirestore.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
         this.listener= null;
-//        getProducts(id);
+        getProducts(order);
     }
 
     public void setOnProductsReceivedListener(onProductsReceivedListener listener){
@@ -43,27 +43,38 @@ public class ProductHandler {
 
     public void getProducts(Order order) {
         CollectionReference productRef = db.collection("products");
+        final Order specificOrder = order;
 
         productRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     List<Product> products = new ArrayList<>();
+                    ArrayList<Product> orderProducts = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (!document.getData().isEmpty()) {
                             double price =Double.parseDouble( document.getData().get("price").toString());
                             int productId = Integer.parseInt(document.getData().get("productId").toString());
                             String name = document.getData().get("name").toString();
 
-
                             Product product = new Product(name,price,productId);
                             products.add(product);
+
+                            for (Product prod: products
+                                 ) {
+                                for (int i = 0; i < specificOrder.getProductIds().size(); i++) {
+                                    if (prod.getProductId() == specificOrder.getProductIds().get(i)){
+                                        orderProducts.add(prod);
+                                    }
+                                }
+                            }
+                            System.out.println("orderProducts = "+  orderProducts.toString());
 
                         }
 
                         Log.d("DBHandlerG", document.getId() + " => " + document.getData());
                     }
-                    listener.displayProducts(products);
+                    listener.displayProducts(orderProducts);
                 } else {
                     Log.d("DBHandlerG", "Error getting documents: ", task.getException());
                 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.springboks.takeawaymessenger.dbHandlers.OrderHandler;
 import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
+import com.springboks.takeawaymessenger.dbHandlers.ProductHandler;
 import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.Product;
 import com.springboks.takeawaymessenger.R;
@@ -32,7 +33,8 @@ public class OrderActivity extends AppCompatActivity {
     private Order order;
     private TextView address;
     private FloatingActionButton floatingActionButton;
-    private OrderHandler dh;
+    private OrderHandler oh;
+    private ProductHandler ph;
     private int userId;
 
     @Override
@@ -46,8 +48,8 @@ public class OrderActivity extends AppCompatActivity {
 
         position = intent.getIntExtra("listItemPosition", 0);
         userId = intent.getIntExtra("userId",0);
-        dh = new OrderHandler(userId);
-        dh.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
+        oh = new OrderHandler(userId);
+        oh.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
             @Override
             public void displayOrders(List<Order> ordersFromDatabase) {
 
@@ -79,8 +81,16 @@ public class OrderActivity extends AppCompatActivity {
                 address = findViewById(R.id.orderpage_addressID);
                 address.setText("placeholder address");
 
-                adapter = new OrderDetailsListAdapter(listView.getContext(), products);
-                listView.setAdapter(adapter);
+                ph = new ProductHandler(order);
+                ph.setOnProductsReceivedListener(new ProductHandler.onProductsReceivedListener() {
+                    @Override
+                    public void displayProducts(List<Product> products) {
+                        adapter = new OrderDetailsListAdapter(listView.getContext(), products);
+                        listView.setAdapter(adapter);
+                    }
+                });
+
+
 
 
             }

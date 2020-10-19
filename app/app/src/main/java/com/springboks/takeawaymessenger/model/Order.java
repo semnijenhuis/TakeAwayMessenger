@@ -128,4 +128,8 @@ private ArrayList<Message> courierMessages;
     public void setImageFile(String imageFile) {
         this.imageFile = imageFile;
     }
+
+    public ArrayList<Integer> getProductIds() {
+        return productIds;
+    }
 }
