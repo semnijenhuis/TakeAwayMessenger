@@ -2,6 +2,7 @@ package com.springboks.takeawaymessenger.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -36,27 +37,39 @@ public class OrderActivity extends AppCompatActivity {
     private OrderHandler oh;
     private ProductHandler ph;
     private int userId;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
         setContentView(R.layout.activity_order);
         floatingActionButton = findViewById(R.id.messageButton);
 
         final ListView listView = findViewById(R.id.orderDetailsList);
-
-        position = intent.getIntExtra("listItemPosition", 0);
+        intent = getIntent();
         userId = intent.getIntExtra("userId",0);
+
+        System.out.println("Global Position = " + position);
         oh = new OrderHandler(userId);
         oh.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
             @Override
             public void displayOrders(List<Order> ordersFromDatabase) {
 
+                intent = getIntent();
+                position =  intent.getIntExtra("listItemPosition", 0);
+                System.out.println("UserId = " + userId);
                 orders = ordersFromDatabase;
+
+                System.out.println(orders.toString());
+
+                for (Order order: orders
+                     ) {
+                    System.out.println("OrderId = " + order.getOrderID());
+                }
 
                 System.out.println(position + " = position ");
                 order = orders.get(position);
+                System.out.println("Current Order: "+ order.getOrderID() + ", at postion " + position );
                 products = new ArrayList<>();
 
                 imageView = findViewById(R.id.orderpage_ImageID);
@@ -99,6 +112,8 @@ public class OrderActivity extends AppCompatActivity {
 
     public void onChatButtonPressed(View view) {
         Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("orderId", order.getOrderID());
         startActivity(intent);
     }
 }

@@ -21,6 +21,7 @@ import java.util.List;
 public class ProductHandler {
     private FirebaseFirestore db;
     private DatabaseReference rootRef;
+    private Order specificOrder;
 
     public interface onProductsReceivedListener{
         public void displayProducts(List<Product> products);
@@ -43,7 +44,7 @@ public class ProductHandler {
 
     public void getProducts(Order order) {
         CollectionReference productRef = db.collection("products");
-        final Order specificOrder = order;
+        specificOrder = order;
 
         productRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -60,19 +61,19 @@ public class ProductHandler {
                             Product product = new Product(name,price,productId);
                             products.add(product);
 
-                            for (Product prod: products
-                                 ) {
-                                for (int i = 0; i < specificOrder.getProductIds().size(); i++) {
-                                    if (prod.getProductId() == specificOrder.getProductIds().get(i)){
-                                        orderProducts.add(prod);
-                                    }
-                                }
-                            }
-                            System.out.println("orderProducts = "+  orderProducts.toString());
 
                         }
 
+
                         Log.d("DBHandlerG", document.getId() + " => " + document.getData());
+                    }
+                    for (int i = 0; i < specificOrder.getProductIds().size() ; i++) {
+                        for (Product prod: products
+                        ) {
+                            if (specificOrder.getProductIds().get(i) == prod.getProductId()){
+                                orderProducts.add(prod);
+                            }
+                        }
                     }
                     listener.displayProducts(orderProducts);
                 } else {

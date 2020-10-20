@@ -4,31 +4,29 @@ import java.time.LocalDate;
 
 public class Message {
 
-    private User sender;
+    private int senderId;
     private User receiver;
     private LocalDate time;
     private String body;
     private Boolean isMe;
+    private int orderId;
 
     public Message(String body, Boolean isMe) {
         this.body = body;
         this.isMe = isMe;
     }
 
-    public Message(User sender, User receiver, String body) {
-        this.sender = sender;
-        this.receiver = receiver;
+    public Message(int senderId,  String body, int orderId) {
+        this.senderId = senderId;
         time = LocalDate.now();
         this.body = body;
+        this.orderId = orderId;
     }
 
-    public User getSender() {
-        return sender;
+    public int getSenderId() {
+        return senderId;
     }
 
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
 
     public User getReceiver() {
         return receiver;

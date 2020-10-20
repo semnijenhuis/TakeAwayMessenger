@@ -4,15 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
 import com.springboks.takeawaymessenger.R;
 import com.springboks.takeawaymessenger.adapters.MessageAdapter;
+import com.springboks.takeawaymessenger.dbHandlers.MessageHandler;
+import com.springboks.takeawaymessenger.dbHandlers.SpecificOrderHandler;
 import com.springboks.takeawaymessenger.model.Message;
+import com.springboks.takeawaymessenger.model.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +28,46 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     List<Message> messageList;
     MessageAdapter messageAdapter;
+    DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
         userInput = findViewById(R.id.chat_user_input);
-        recyclerView = findViewById(R.id.conversation);
-        messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(messageList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(messageAdapter);
+        Intent intent = getIntent();
+        final int orderId = intent.getIntExtra("orderId",-1);
+        final int userId = intent.getIntExtra("userId", -1);
+
+        System.out.println( "userId = " + userId + ", orderId = "+ orderId);
+
+        SpecificOrderHandler soh = new SpecificOrderHandler(orderId);
+        soh.setOnSpecificOrderReceivedListener(new SpecificOrderHandler.onSpecificOrderReceivedListener() {
+            @Override
+            public void displayOrder(Order order) {
+                System.out.println( "AAAAAAAAAAAAAA" + order.getName());
+
+
+                recyclerView = findViewById(R.id.conversation);
+                messageList = new ArrayList<>();
+
+                MessageHandler mh = new MessageHandler(userId, order);
+                mh.setOnAccountsReceivedListener(new MessageHandler.onMessagesReceivedListener() {
+                    @Override
+                    public void displayMessages(List<Message> sentMessages, List<Message> receivedMessages) {
+                        messageList.addAll(sentMessages);
+                        messageList.addAll(receivedMessages);
+
+                        messageAdapter = new MessageAdapter(messageList);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this, LinearLayoutManager.VERTICAL, false));
+                        recyclerView.setAdapter(messageAdapter);
+                    }
+                });
+
+            }
+        });
+
         userInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

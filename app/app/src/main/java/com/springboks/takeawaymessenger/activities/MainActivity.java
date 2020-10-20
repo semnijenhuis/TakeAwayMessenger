@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void whenOrderClicked(int position) {
         Intent intent = new Intent(this, OrderActivity.class);
+        System.out.println("sent position AAAAAA = " + position);
         intent.putExtra("ListItemPosition", position);
         intent.putExtra("userId", userId);
         startActivity(intent);
