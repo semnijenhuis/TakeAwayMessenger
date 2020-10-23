@@ -30,6 +30,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,29 +38,40 @@ import java.util.Map;
 public class OrderHandler {
     private FirebaseFirestore db;
     private DatabaseReference rootRef;
+    Map<String,Object> orderData = Collections.emptyMap();
 
-    public interface onOrdersReceivedListener{
+
+    public interface onOrdersReceivedListener {
         public void displayOrders(List<Order> orders);
     }
+
     private onOrdersReceivedListener listener;
 
     public OrderHandler(int id) {
         db = FirebaseFirestore.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        this.listener= null;
+        this.listener = null;
         getOrders(id);
     }
 
-    public void setOnOrdersReceivedListener(onOrdersReceivedListener listener){
+    public OrderHandler(String orderNumberString) {
+        db = FirebaseFirestore.getInstance();
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        this.listener = null;
+        try {
+            Integer orderNumber = Integer.parseInt(orderNumberString);
+            getOrderByOrderNumber(orderNumber);
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void setOnOrdersReceivedListener(onOrdersReceivedListener listener) {
         this.listener = listener;
     }
 
-
-
-
     public void getOrders(final int accountId) {
         CollectionReference ordersRef = db.collection("orders");
-
         ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -67,20 +79,20 @@ public class OrderHandler {
                     List<Order> orders = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (!document.getData().isEmpty()) {
-                            int orderId =Integer.parseInt( document.getData().get("orderId").toString());
+                            int orderId = Integer.parseInt(document.getData().get("orderId").toString());
                             String restaurantName = document.getData().get("restaurantName").toString();
                             String date = document.getData().get("date").toString();
                             String selectedDeliveryTime = document.getData().get("selectedDeliveryTime").toString();
                             String actualDeliveryTime = document.getData().get("actualDeliveryTime").toString();
-                            boolean open = Boolean.parseBoolean( document.getData().get("open").toString());
+                            boolean open = Boolean.parseBoolean(document.getData().get("open").toString());
                             int customerId = Integer.parseInt(document.getData().get("customerId").toString());
                             int courierId = Integer.parseInt(document.getData().get("courierId").toString());
 
                             ArrayList<Integer> productIds = new ArrayList<>();
-                            if(document.getData().get("productIds") != null){
+                            if (document.getData().get("productIds") != null) {
                                 Object pIds = document.getData().get("productIds");
                                 String[] values = String.valueOf(pIds).replace("[", "").replace("]", "").replace(" ", "").split(",");
-                                for (int i = 0; i < values.length ; i++) {
+                                for (int i = 0; i < values.length; i++) {
                                     productIds.add(Integer.parseInt(values[i]));
 
                                 }
@@ -88,8 +100,8 @@ public class OrderHandler {
 
                             System.out.println("pids =" + productIds);
 
-                            Order order = new Order( orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId,productIds);
-                            if(accountId == courierId || accountId == customerId){
+                            Order order = new Order(orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId, productIds);
+                            if (accountId == courierId || accountId == customerId) {
                                 orders.add(order);
                             }
                         }
@@ -102,6 +114,29 @@ public class OrderHandler {
                 }
             }
         });
+    }
+
+    public Map<String, Object> getOrderByOrderNumber(final int orderNumberLoggedIn) {
+        Log.i("luc", "im at get order by order number");
+
+        CollectionReference ordersRef = db.collection("orders");
+        ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (!document.getData().isEmpty()) {
+                            int orderId = Integer.parseInt(document.getData().get("orderId").toString());
+                            if (orderId == orderNumberLoggedIn){
+                                orderData.putAll(document.getData());
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        return orderData;
     }
 }
 

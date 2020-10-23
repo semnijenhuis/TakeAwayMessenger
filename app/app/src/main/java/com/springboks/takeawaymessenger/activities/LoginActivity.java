@@ -35,14 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         Button createAccount = findViewById(R.id.loginCreateAccountButton);
         userNameField = findViewById(R.id.userName);
         passwordField = findViewById(R.id.loginPassword);
-
-
-    }
-
-    public void createAccount(View view) {
-        Intent intent = new Intent(this, CreateCourierActivity.class);
-        //TODO: we should do popups here if its customer or if its courier
-        startActivity(intent);
     }
 
     public void orderNumberStart(View view) {
@@ -81,8 +73,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
 
 }

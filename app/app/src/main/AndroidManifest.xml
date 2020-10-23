@@ -14,13 +14,8 @@
         <activity android:name=".activities.ChatActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity
-            android:name=".activities.CreateCustomerActivity"
-            android:label="@string/title_activity_create_customer"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.SplashActivity" />
         <activity android:name=".activities.LoginOrderActivity" />
-        <activity android:name=".activities.CreateCourierActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
