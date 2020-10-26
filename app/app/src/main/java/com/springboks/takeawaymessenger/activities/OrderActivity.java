@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.springboks.takeawaymessenger.dbHandlers.OrderHandler;
 import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
 import com.springboks.takeawaymessenger.dbHandlers.ProductHandler;
+import com.springboks.takeawaymessenger.dbHandlers.SpecificOrderHandler;
 import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.Product;
 import com.springboks.takeawaymessenger.R;
@@ -31,13 +32,15 @@ public class OrderActivity extends AppCompatActivity {
     private OrderDetailsListAdapter adapter;
     private int position;
     private ImageView imageView;
-    private Order order;
+    private Order currentOrder;
     private TextView address;
     private FloatingActionButton floatingActionButton;
     private OrderHandler oh;
     private ProductHandler ph;
     private int userId;
     private Intent intent;
+    private int currentOrderId;
+    private int orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,31 +50,15 @@ public class OrderActivity extends AppCompatActivity {
 
         final ListView listView = findViewById(R.id.orderDetailsList);
         intent = getIntent();
-        userId = intent.getIntExtra("userId",0);
+        userId = intent.getIntExtra("userId",-1);
+        position =  intent.getIntExtra("listItemPosition", -1);
+        currentOrderId = intent.getIntExtra("orderId", -1);
 
         System.out.println("Global Position = " + position);
-        oh = new OrderHandler(userId);
-        oh.setOnOrdersReceivedListener(new OrderHandler.onOrdersReceivedListener() {
+        SpecificOrderHandler soh = new SpecificOrderHandler(currentOrderId);
+        soh.setOnSpecificOrderReceivedListener(new SpecificOrderHandler.onSpecificOrderReceivedListener() {
             @Override
-            public void displayOrders(List<Order> ordersFromDatabase) {
-
-                intent = getIntent();
-                position =  intent.getIntExtra("listItemPosition", 0);
-                System.out.println("UserId = " + userId);
-                orders = ordersFromDatabase;
-
-                System.out.println(orders.toString());
-
-                for (Order order: orders
-                     ) {
-                    System.out.println("OrderId = " + order.getOrderID());
-                }
-
-                System.out.println(position + " = position ");
-                order = orders.get(position);
-                System.out.println("Current Order: "+ order.getOrderID() + ", at postion " + position );
-                products = new ArrayList<>();
-
+            public void displayOrder(Order order) {
                 imageView = findViewById(R.id.orderpage_ImageID);
                 InputStream inputStream = null;
                 try {
@@ -92,7 +79,7 @@ public class OrderActivity extends AppCompatActivity {
                     }
                 }
                 address = findViewById(R.id.orderpage_addressID);
-                address.setText("placeholder address");
+                address.setText("placeHolder");
 
                 ph = new ProductHandler(order);
                 ph.setOnProductsReceivedListener(new ProductHandler.onProductsReceivedListener() {
@@ -102,18 +89,15 @@ public class OrderActivity extends AppCompatActivity {
                         listView.setAdapter(adapter);
                     }
                 });
-
-
-
-
             }
         });
+
     }
 
     public void onChatButtonPressed(View view) {
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("userId", userId);
-        intent.putExtra("orderId", order.getOrderID());
+        intent.putExtra("orderId", currentOrder.getOrderID());
         startActivity(intent);
     }
 }

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.springboks.takeawaymessenger.R;
 import com.springboks.takeawaymessenger.dbHandlers.OrderHandler;
+import com.springboks.takeawaymessenger.dbHandlers.SpecificOrderHandler;
+import com.springboks.takeawaymessenger.model.Order;
 
 public class LoginOrderActivity extends AppCompatActivity {
 
@@ -32,16 +34,34 @@ public class LoginOrderActivity extends AppCompatActivity {
         finish();
     }
 
-    public void orderNumberLogin(View view) {
+    public void orderNumberLogin(final View view) {
         MainActivity.loggedIn = true;
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, OrderActivity.class);
         EditText orderIdInput = findViewById(R.id.orderNumberLogin);
-
         String orderNumber = orderIdInput.getText().toString();
-        OrderHandler oh = new OrderHandler(orderNumber);
+        SpecificOrderHandler soh = new SpecificOrderHandler(Integer.parseInt(orderNumber));
+
+        soh.setOnSpecificOrderReceivedListener(new SpecificOrderHandler.onSpecificOrderReceivedListener() {
+            @Override
+            public void displayOrder(Order order) {
+                boolean orderMatch = false;
+               if(order != null){
+                   intent.putExtra("orderId",order.getOrderID());
+                   startActivity(intent);
+                   orderMatch = true;
+               }
+               if(!orderMatch){
+                   Toast.makeText(view.getContext(), "Entered order number incorrect", Toast.LENGTH_SHORT).show();
+               }
+            }
+
+        });
 
 
-        startActivity(intent);
+
+
+
+
 
     }
 }

@@ -54,17 +54,6 @@ public class OrderHandler {
         getOrders(id);
     }
 
-    public OrderHandler(String orderNumberString) {
-        db = FirebaseFirestore.getInstance();
-        rootRef = FirebaseDatabase.getInstance().getReference();
-        this.listener = null;
-        try {
-            Integer orderNumber = Integer.parseInt(orderNumberString);
-            getOrderByOrderNumber(orderNumber);
-        } catch (Exception e) {
-
-        }
-    }
 
     public void setOnOrdersReceivedListener(onOrdersReceivedListener listener) {
         this.listener = listener;
@@ -114,29 +103,6 @@ public class OrderHandler {
                 }
             }
         });
-    }
-
-    public Map<String, Object> getOrderByOrderNumber(final int orderNumberLoggedIn) {
-        Log.i("luc", "im at get order by order number");
-
-        CollectionReference ordersRef = db.collection("orders");
-        ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if (!document.getData().isEmpty()) {
-                            int orderId = Integer.parseInt(document.getData().get("orderId").toString());
-                            if (orderId == orderNumberLoggedIn){
-                                orderData.putAll(document.getData());
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        return orderData;
     }
 }
 
