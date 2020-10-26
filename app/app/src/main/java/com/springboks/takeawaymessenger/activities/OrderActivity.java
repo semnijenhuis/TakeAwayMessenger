@@ -59,6 +59,7 @@ public class OrderActivity extends AppCompatActivity {
         soh.setOnSpecificOrderReceivedListener(new SpecificOrderHandler.onSpecificOrderReceivedListener() {
             @Override
             public void displayOrder(Order order) {
+                currentOrder = order;
                 imageView = findViewById(R.id.orderpage_ImageID);
                 InputStream inputStream = null;
                 try {

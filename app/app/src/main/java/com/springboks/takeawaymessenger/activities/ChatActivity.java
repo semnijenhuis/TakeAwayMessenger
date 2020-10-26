@@ -1,5 +1,6 @@
 package com.springboks.takeawaymessenger.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +12,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.springboks.takeawaymessenger.R;
 import com.springboks.takeawaymessenger.adapters.MessageAdapter;
 import com.springboks.takeawaymessenger.dbHandlers.MessageHandler;
@@ -29,6 +34,7 @@ public class ChatActivity extends AppCompatActivity {
     List<Message> messageList;
     MessageAdapter messageAdapter;
     DatabaseReference ref;
+    Order currentOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +53,32 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void displayOrder(Order order) {
                 System.out.println( "AAAAAAAAAAAAAA" + order.getName());
-
+                currentOrder = order;
 
                 recyclerView = findViewById(R.id.conversation);
                 messageList = new ArrayList<>();
 
-                MessageHandler mh = new MessageHandler(userId, order);
-                mh.setOnAccountsReceivedListener(new MessageHandler.onMessagesReceivedListener() {
+                MessageHandler mh = new MessageHandler(userId,currentOrder);
+                mh.setOnMessagesReceivedListener(new MessageHandler.onMessagesReceivedListener() {
                     @Override
-                    public void displayMessages(List<Message> sentMessages, List<Message> receivedMessages) {
-                        messageList.addAll(sentMessages);
-                        messageList.addAll(receivedMessages);
-
-                        messageAdapter = new MessageAdapter(messageList);
+                    public void displayMessages(List<Message> messages) {
+                        messageAdapter = new MessageAdapter(messages);
                         recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this, LinearLayoutManager.VERTICAL, false));
                         recyclerView.setAdapter(messageAdapter);
                     }
                 });
+
+
+//                MessageHandler mh = new MessageHandler(userId, order);
+//                mh.setOnAccountsReceivedListener(new MessageHandler.onMessagesReceivedListener() {
+//                    @Override
+//                    public void displayMessages(List<Message> sentMessages, List<Message> receivedMessages) {
+//                        messageList.addAll(sentMessages);
+//                        messageList.addAll(receivedMessages);
+//
+//
+//                    }
+//                });
 
             }
         });

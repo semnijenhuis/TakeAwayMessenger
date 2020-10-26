@@ -4,19 +4,16 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.springboks.takeawaymessenger.model.Courier;
-import com.springboks.takeawaymessenger.model.Customer;
 import com.springboks.takeawaymessenger.model.Message;
 import com.springboks.takeawaymessenger.model.Order;
-import com.springboks.takeawaymessenger.model.User;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +24,18 @@ public class MessageHandler {
     private Order thisOrder;
 
     public interface onMessagesReceivedListener{
-        public void displayMessages(List<Message> sentMessages, List<Message> receivedMessages);
+        public void displayMessages(List<Message> messages);
     }
     private MessageHandler.onMessagesReceivedListener listener;
 
     public MessageHandler(int userId, Order order) {
         db = FirebaseFirestore.getInstance();
-        rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef = FirebaseDatabase.getInstance().getReference("messages");
         this.listener= null;
         getMessages(userId, order);
     }
 
-    public void setOnAccountsReceivedListener(MessageHandler.onMessagesReceivedListener listener){
+    public void setOnMessagesReceivedListener(MessageHandler.onMessagesReceivedListener listener){
         this.listener = listener;
     }
 
@@ -46,35 +43,35 @@ public class MessageHandler {
 
 
     public void getMessages(final int userId, final Order order) {
-        CollectionReference ordersRef = db.collection("messages");
-        thisOrder =order;
-
-        ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        final ArrayList<Message> messages = new ArrayList<>();
+        rootRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    List<Message> sentMessages = new ArrayList<>();
-                    List<Message> receivedMessages = new ArrayList<>();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if (!document.getData().isEmpty()) {
-                            int senderId =Integer.parseInt( document.getData().get("senderId").toString());
-                            String body = document.getData().get("body").toString();
-                            int orderId = Integer.parseInt(document.getData().get("orderId").toString());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            Message message = new Message(senderId,body,orderId);
-                            if(message.getSenderId() == userId && thisOrder.getOrderID() == orderId){
-                                sentMessages.add(message);
-                            } else if (message.getSenderId() != userId && thisOrder.getOrderID() == orderId) {
-                                receivedMessages.add(message);
-                            }
+                for (DataSnapshot ds: snapshot.getChildren()
+                ) {
+                    System.out.println(ds.toString());
+                    int dbOrderId = Integer.parseInt(snapshot.child("orderId").getValue().toString());
+                    System.out.println( "AAAAAAAAAAAAAAAAA why is this " +dbOrderId);
+                    if (dbOrderId == order.getOrderID()){
+                        String body = ds.child("body").toString();
+                        int dbUserId =Integer.parseInt(ds.child("senderId").getValue().toString());
+
+                        Message message;
+                        if(userId != dbUserId) {
+                            message = new Message(body,false);
+                        } else {
+                            message = new Message(body,true);
                         }
-
-                        Log.d("DBHandlerG", document.getId() + " => " + document.getData());
+                        messages.add(message);
                     }
-                    listener.displayMessages(sentMessages,receivedMessages);
-                } else {
-                    Log.d("DBHandlerG", "Error getting documents: ", task.getException());
                 }
+                listener.displayMessages(messages);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
