@@ -50,12 +50,13 @@ public class OrderActivity extends AppCompatActivity {
 
         final ListView listView = findViewById(R.id.orderDetailsList);
         intent = getIntent();
-        userId = intent.getIntExtra("userId",-1);
-        position =  intent.getIntExtra("listItemPosition", -1);
+        userId = intent.getIntExtra("userId", -1);
+        position = intent.getIntExtra("listItemPosition", -1);
+
         currentOrderId = intent.getIntExtra("orderId", -1);
 
-        System.out.println("Global Position = " + position);
         SpecificOrderHandler soh = new SpecificOrderHandler(currentOrderId);
+
         soh.setOnSpecificOrderReceivedListener(new SpecificOrderHandler.onSpecificOrderReceivedListener() {
             @Override
             public void displayOrder(Order order) {
@@ -70,7 +71,7 @@ public class OrderActivity extends AppCompatActivity {
                     imageView.setImageDrawable(d);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }finally {
+                } finally {
                     try {
                         if (inputStream != null) {
                             inputStream.close();
@@ -92,7 +93,6 @@ public class OrderActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
 
     public void onChatButtonPressed(View view) {

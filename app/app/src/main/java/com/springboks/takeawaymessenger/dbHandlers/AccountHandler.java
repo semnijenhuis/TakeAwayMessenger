@@ -1,7 +1,5 @@
 package com.springboks.takeawaymessenger.dbHandlers;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,24 +21,22 @@ public class AccountHandler {
     private FirebaseFirestore db;
     private DatabaseReference rootRef;
 
-    public interface onAccountsReceivedListener{
+    public interface onAccountsReceivedListener {
         public void displayAccounts(List<User> accounts);
     }
+
     private AccountHandler.onAccountsReceivedListener listener;
 
     public AccountHandler() {
         db = FirebaseFirestore.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        this.listener= null;
+        this.listener = null;
         getAccounts();
     }
 
-    public void setOnAccountsReceivedListener(AccountHandler.onAccountsReceivedListener listener){
+    public void setOnAccountsReceivedListener(AccountHandler.onAccountsReceivedListener listener) {
         this.listener = listener;
     }
-
-
-
 
     public void getAccounts() {
         CollectionReference ordersRef = db.collection("users");
@@ -52,28 +48,24 @@ public class AccountHandler {
                     List<User> accounts = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (!document.getData().isEmpty()) {
-                            int userId =Integer.parseInt( document.getData().get("userId").toString());
+                            int userId = Integer.parseInt(document.getData().get("userId").toString());
                             String firstName = document.getData().get("firstName").toString();
                             String lastName = document.getData().get("lastName").toString();
                             String userName = document.getData().get("userName").toString();
                             String password = document.getData().get("password").toString();
-                            boolean isCourier = Boolean.parseBoolean( document.getData().get("isCourier").toString());
+                            boolean isCourier = Boolean.parseBoolean(document.getData().get("isCourier").toString());
 
-                            if(isCourier){
-                                Courier courier = new Courier(userId,firstName,lastName,userName,password);
+                            if (isCourier) {
+                                Courier courier = new Courier(userId, firstName, lastName, userName, password);
                                 accounts.add(courier);
                             } else {
                                 String address = document.getData().get("address").toString();
-                                Customer customer = new Customer(userId,firstName,lastName,userName,password,address);
+                                Customer customer = new Customer(userId, firstName, lastName, userName, password, address);
                                 accounts.add(customer);
                             }
                         }
-
-                        Log.d("DBHandlerG", document.getId() + " => " + document.getData());
                     }
                     listener.displayAccounts(accounts);
-                } else {
-                    Log.d("DBHandlerG", "Error getting documents: ", task.getException());
                 }
             }
         });

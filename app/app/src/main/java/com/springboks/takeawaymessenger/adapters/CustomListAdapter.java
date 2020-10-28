@@ -2,7 +2,6 @@ package com.springboks.takeawaymessenger.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,8 @@ import java.util.List;
 
 public class CustomListAdapter extends ArrayAdapter {
 
-    LayoutInflater layoutInflater;
-    List<Order> orderList;
+    private LayoutInflater layoutInflater;
+    private List<Order> orderList;
     private ImageView imageView;
     private TextView orderId;
     private TextView name;
@@ -61,8 +60,6 @@ public class CustomListAdapter extends ArrayAdapter {
             InputStream inputStream = null;
             try {
                 String imageFile = order.getImageFile();
-                Log.i("Yoo", imageFile);
-
                 inputStream = getContext().getAssets().open(imageFile);
                 Drawable d = Drawable.createFromStream(inputStream, null);
                 imageView.setImageDrawable(d);

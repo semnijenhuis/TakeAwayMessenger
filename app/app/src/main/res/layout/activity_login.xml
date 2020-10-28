@@ -50,35 +50,27 @@
         android:id="@+id/loginOrderNumberButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="192dp"
         android:backgroundTint="#1574F5"
-        android:text="@string/order_number"
         android:onClick="orderNumberStart"
+        android:text="@string/order_number"
         android:textColor="#F6F6F6"
-        app:layout_constraintBottom_toTopOf="@+id/loginCreateAccountButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/loginCreateAccountButton"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#FFFFFF"
-        android:onClick="createAccount"
-        android:text="@string/create_account"
-        app:layout_constraintBottom_toTopOf="@+id/loginLoginButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
     <Button
         android:id="@+id/loginLoginButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="60dp"
         android:backgroundTint="#FFFFFF"
-        android:text="@string/login"
         android:onClick="login"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

@@ -63,9 +63,6 @@ public class ProductHandler {
 
 
                         }
-
-
-                        Log.d("DBHandlerG", document.getId() + " => " + document.getData());
                     }
                     for (int i = 0; i < specificOrder.getProductIds().size() ; i++) {
                         for (Product prod: products
@@ -76,8 +73,6 @@ public class ProductHandler {
                         }
                     }
                     listener.displayProducts(orderProducts);
-                } else {
-                    Log.d("DBHandlerG", "Error getting documents: ", task.getException());
                 }
             }
         });

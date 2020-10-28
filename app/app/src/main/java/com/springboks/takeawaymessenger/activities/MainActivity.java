@@ -49,15 +49,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void displayOrders(List<Order> ordersFromDatabase) {
                 orders = ordersFromDatabase;
-//                List<Order> usersOrders = new ArrayList<>();
-//                for (Order order: orders
-//                     ) {
-//                    System.out.println("courierId = " + order.getCourierId() + "customerId = " + order.getCustomerId() + "intentId = " + userId );
-//                    if (order.getCourierId() == userId || order.getCustomerId() == userId  ){
-//                        usersOrders.add(order);
-//                    }
-//                }
-
                 CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), orders);
                 listView.setAdapter(adapter);
 
@@ -78,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         int orderId = orders.get(position).getOrderID();
 
         Intent intent = new Intent(this, OrderActivity.class);
-        System.out.println("sent position AAAAAA = " + position);
         intent.putExtra("ListItemPosition", position);
         intent.putExtra("userId", userId);
         intent.putExtra("orderId",orderId);

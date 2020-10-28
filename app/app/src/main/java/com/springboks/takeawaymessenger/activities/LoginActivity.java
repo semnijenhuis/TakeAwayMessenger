@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         actionBar.hide();
         Button orderNumber = findViewById(R.id.loginOrderNumberButton);
         Button login = findViewById(R.id.loginLoginButton);
-        Button createAccount = findViewById(R.id.loginCreateAccountButton);
         userNameField = findViewById(R.id.userName);
         passwordField = findViewById(R.id.loginPassword);
     }
@@ -53,11 +52,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 for (User user: accounts
                      ) {
-                    System.out.println(enteredPassword + ", " + user.getPassWord());
-                    System.out.println(enteredUserName + ", " + user.getUserName());
                     if (enteredUserName.equals(user.getUserName()) && enteredPassword.equals(user.getPassWord())){
                         Intent intent = new Intent(view.getContext(), MainActivity.class);
-                        System.out.println("userId = "+ user.getUserID());
                         intent.putExtra("userId", user.getUserID());
                         startActivity(intent);
                         MainActivity.loggedIn = true;
@@ -67,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if(!accountMatch){
                     Toast.makeText(view.getContext(), "Username or password incorrect", Toast.LENGTH_SHORT).show();
-                    System.out.println("wrong!");
                 }
 
             }

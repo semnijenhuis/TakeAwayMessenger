@@ -1,6 +1,5 @@
 package com.springboks.takeawaymessenger.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,11 +11,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 import com.springboks.takeawaymessenger.R;
 import com.springboks.takeawaymessenger.adapters.MessageAdapter;
 import com.springboks.takeawaymessenger.dbHandlers.MessageHandler;
@@ -31,10 +27,10 @@ public class ChatActivity extends AppCompatActivity {
 
     private EditText userInput;
     private RecyclerView recyclerView;
-    List<Message> messageList;
-    MessageAdapter messageAdapter;
-    DatabaseReference ref;
-    Order currentOrder;
+    private List<Message> messageList;
+    private MessageAdapter messageAdapter;
+    private DatabaseReference ref;
+    private Order currentOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

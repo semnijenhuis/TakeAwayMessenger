@@ -40,12 +40,7 @@ public class SpecificOrderHandler {
         this.listener = listener;
     }
 
-
-
-
     public void getOrderByOrderNumber(final int orderNumberLoggedIn) {
-        Log.i("luc", "im at get order by order number");
-
 
         CollectionReference ordersRef = db.collection("orders");
         ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

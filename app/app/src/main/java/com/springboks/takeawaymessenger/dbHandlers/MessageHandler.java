@@ -1,7 +1,5 @@
 package com.springboks.takeawaymessenger.dbHandlers;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 
