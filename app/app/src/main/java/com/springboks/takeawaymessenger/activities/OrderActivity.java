@@ -15,12 +15,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.springboks.takeawaymessenger.dbHandlers.OrderHandler;
 import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
 import com.springboks.takeawaymessenger.dbHandlers.ProductHandler;
@@ -91,9 +97,6 @@ public class OrderActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                address = findViewById(R.id.orderpage_addressID);
-                //TODO:set address
-                address.setText("order.");
 
                 ph = new ProductHandler(order);
                 ph.setOnProductsReceivedListener(new ProductHandler.onProductsReceivedListener() {
@@ -116,34 +119,32 @@ public class OrderActivity extends AppCompatActivity {
 
     public void completeOrder(View view) {
         //setting ad database
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        db.collection("orders").document()
         CollectionReference orders = db.collection("orders");
 
-        Query currentOrder = orders.whereEqualTo("orderId", currentOrderId);
-        Log.i("query", currentOrder.toString());
+        final Query currentOrder = orders.whereEqualTo("orderId", currentOrderId);
 
-//        db.collection("orders").document().set("open").addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void aVoid) {
-//                Log.d("luc", "DocumentSnapshot successfully written!");
-//            }
-//        })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w("luc", "Error writing document", e);
-//                    }
-//                });
-//    }
+        CollectionReference docRef = db.collection("orders");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot qs : task.getResult()) {
+                        if (!qs.getData().isEmpty()) {
 
+                            if (Integer.parseInt(qs.getData().get("orderId").toString()) == currentOrderId) {
+                                Log.i("current", Integer.parseInt(qs.getData().get("orderId").toString()) + "");
+//                                qs.getDocumentReference("open").update("open", false);
 
+                            }
+                        }
+                    }
 
-        //setting at model
-//        currentOrder.setOpen(true);
-
+                }
+            }
+        });
         //display results and hide button
         Toast.makeText(view.getContext(), "Order was closed", Toast.LENGTH_SHORT).show();
-
-
     }
 }
