@@ -1,5 +1,6 @@
 package com.springboks.takeawaymessenger.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContextWrapper;
@@ -8,11 +9,18 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.springboks.takeawaymessenger.dbHandlers.OrderHandler;
 import com.springboks.takeawaymessenger.adapters.OrderDetailsListAdapter;
 import com.springboks.takeawaymessenger.dbHandlers.ProductHandler;
@@ -24,7 +32,9 @@ import com.springboks.takeawaymessenger.R;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderActivity extends AppCompatActivity {
     private List<Product> products;
@@ -41,6 +51,7 @@ public class OrderActivity extends AppCompatActivity {
     private Intent intent;
     private int currentOrderId;
     private int orderId;
+    private Button orderpage_OrderCompleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +92,7 @@ public class OrderActivity extends AppCompatActivity {
                     }
                 }
                 address = findViewById(R.id.orderpage_addressID);
+                //TODO:set address
                 address.setText("placeHolder");
 
                 ph = new ProductHandler(order);
@@ -100,5 +112,38 @@ public class OrderActivity extends AppCompatActivity {
         intent.putExtra("userId", userId);
         intent.putExtra("orderId", currentOrder.getOrderID());
         startActivity(intent);
+    }
+
+    public void completeOrder(View view) {
+        //setting ad database
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference orders = db.collection("orders");
+
+        Query currentOrder = orders.whereEqualTo("orderId", currentOrderId);
+        Log.i("query", currentOrder.toString());
+
+//        db.collection("orders").document().set("open").addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid) {
+//                Log.d("luc", "DocumentSnapshot successfully written!");
+//            }
+//        })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w("luc", "Error writing document", e);
+//                    }
+//                });
+//    }
+
+
+
+        //setting at model
+//        currentOrder.setOpen(true);
+
+        //display results and hide button
+        Toast.makeText(view.getContext(), "Order was closed", Toast.LENGTH_SHORT).show();
+
+
     }
 }

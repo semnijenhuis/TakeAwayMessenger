@@ -71,4 +71,11 @@ private ArrayList<Message> courierMessages;
         return productIds;
     }
 
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
 }
