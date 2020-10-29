@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/userName"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/shadow"
         android:elevation="10dp"
@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/loginPassword"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/shadow"
         android:elevation="10dp"
@@ -49,39 +49,31 @@
     <Button
         android:id="@+id/loginOrderNumberButton"
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="192dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="152dp"
         android:backgroundTint="#1574F5"
         android:onClick="orderNumberStart"
         android:text="@string/order_number"
         android:textColor="#F6F6F6"
+        app:layout_constraintBottom_toTopOf="@+id/loginLoginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/loginLoginButton"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="52dp"
         android:backgroundTint="#FFFFFF"
         android:onClick="login"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/loginForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/forgot_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.815"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

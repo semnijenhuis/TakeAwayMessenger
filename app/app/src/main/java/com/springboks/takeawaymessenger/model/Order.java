@@ -71,6 +71,8 @@ private ArrayList<Message> courierMessages;
         return productIds;
     }
 
+    public int getCustomerId() { return customerId;}
+
     public boolean isOpen() {
         return open;
     }

@@ -9,7 +9,7 @@
     >
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/splashImage"
         android:layout_width="350dp"
         android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"

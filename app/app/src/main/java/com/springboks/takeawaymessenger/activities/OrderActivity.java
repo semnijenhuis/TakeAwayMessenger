@@ -118,6 +118,8 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     public void completeOrder(View view) {
+        Map<String, Object> update = new HashMap<>();
+        update.put("open", false);
         //setting ad database
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 //        db.collection("orders").document()
@@ -126,6 +128,7 @@ public class OrderActivity extends AppCompatActivity {
         final Query currentOrder = orders.whereEqualTo("orderId", currentOrderId);
 
         CollectionReference docRef = db.collection("orders");
+
         docRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
