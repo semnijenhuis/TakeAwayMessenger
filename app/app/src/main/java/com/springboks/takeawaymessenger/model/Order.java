@@ -71,5 +71,4 @@ private ArrayList<Message> courierMessages;
         return productIds;
     }
 
-
 }

@@ -1,18 +1,25 @@
 package com.springboks.takeawaymessenger.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.JsonObject;
 import com.springboks.takeawaymessenger.R;
 import com.springboks.takeawaymessenger.adapters.MessageAdapter;
 import com.springboks.takeawaymessenger.dbHandlers.AccountHandler;
@@ -23,8 +30,13 @@ import com.springboks.takeawaymessenger.model.Message;
 import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.User;
 
+import org.json.JSONObject;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -34,6 +46,9 @@ public class ChatActivity extends AppCompatActivity {
     private MessageAdapter messageAdapter;
     private DatabaseReference ref;
     private Order currentOrder;
+    public int orderId;
+    public int userId;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +56,11 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         userInput = findViewById(R.id.chat_user_input);
-        Intent intent = getIntent();
-        final int orderId = intent.getIntExtra("orderId", -1);
-        final int userId = intent.getIntExtra("userId", -1);
+        db = FirebaseFirestore.getInstance();
 
-        System.out.println("userId = " + userId + ", orderId = " + orderId);
+        Intent intent = getIntent();
+        orderId = intent.getIntExtra("orderId", -1);
+        userId = intent.getIntExtra("userId", -1);
 
         SpecificOrderHandler soh = new SpecificOrderHandler(orderId);
 
@@ -99,4 +114,38 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void sendMessageOnClick(View view) {
+        Map<String, Object> message = new HashMap<>();
+
+        message.put("body", userInput.getText().toString());
+
+        //if logged in by order number onlygit
+        if (userId != -1){
+            message.put("senderId", userId);
+        }
+        else {
+            message.put("senderId", -1);
+        }
+
+        message.put("orderId", orderId);
+
+
+
+
+        db.collection("messages").document().set(message).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("luc", "DocumentSnapshot successfully written!");
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("luc", "Error writing document", e);
+                    }
+                });
+    }
 }
+

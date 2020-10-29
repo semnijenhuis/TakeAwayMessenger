@@ -84,7 +84,6 @@ public class MessageHandler {
                             msg.setMe(false);
                         } else {
                             msg.setMe(true);
-
                         }
 
                         msgsList.add(msg);
@@ -93,18 +92,10 @@ public class MessageHandler {
                             case ADDED:
                                 Log.i("msg", "New Msg: " + msg);
                                 break;
-                            case MODIFIED:
-                                Log.i("msg", "Modified Msg: " + msg);
-                                break;
-                            case REMOVED:
-                                Log.i("msg", "Removed Msg: " + msg);
-                                break;
                         }
                     }
-                    Log.i("orderlist", Arrays.toString(msgsList.toArray()));
                     listener.displayMessages(msgsList);
                 }
-
             }
         });
     }
