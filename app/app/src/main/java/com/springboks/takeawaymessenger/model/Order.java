@@ -78,4 +78,6 @@ private ArrayList<Message> courierMessages;
     public void setOpen(boolean open) {
         this.open = open;
     }
+
+
 }

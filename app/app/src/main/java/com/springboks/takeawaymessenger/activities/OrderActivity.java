@@ -93,7 +93,7 @@ public class OrderActivity extends AppCompatActivity {
                 }
                 address = findViewById(R.id.orderpage_addressID);
                 //TODO:set address
-                address.setText("placeHolder");
+                address.setText("order.");
 
                 ph = new ProductHandler(order);
                 ph.setOnProductsReceivedListener(new ProductHandler.onProductsReceivedListener() {
