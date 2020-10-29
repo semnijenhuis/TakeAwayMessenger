@@ -1,5 +1,6 @@
 package com.springboks.takeawaymessenger.dbHandlers;
 
+import android.net.sip.SipAudioCall;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -21,7 +22,9 @@ import com.springboks.takeawaymessenger.model.Message;
 import com.springboks.takeawaymessenger.model.Order;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +42,17 @@ public class MessageHandler {
 
     public MessageHandler(int userId, Order order) {
         db = FirebaseFirestore.getInstance();
-//        rootRef = FirebaseDatabase.getInstance().getReference("messages");
+        this.listener= null;
+        getMessages(userId, order);
+    }
+
+
+    public void setOnMessagesReceivedListener(MessageHandler.onMessagesReceivedListener listener){
+        this.listener = listener;
+    }
+
+    public void getMessages(final int userId, final Order order) {
+        final List<Message> msgsList = new ArrayList<>();
 
         //Getting msgs from the order
         CollectionReference allMessage = db.collection("messages");
@@ -55,7 +68,16 @@ public class MessageHandler {
                 }
 
                 for (DocumentChange dc : value.getDocumentChanges()) {
+
                     Message msg = dc.getDocument().toObject(Message.class);
+                    if (userId == msg.getSenderId()){
+                        msg.setMe(true);
+                    }
+                    else {
+                        msg.setMe(false);
+                    }
+
+                    msgsList.add(msg);
 
                     switch (dc.getType()) {
                         case ADDED:
@@ -69,47 +91,8 @@ public class MessageHandler {
                             break;
                     }
                 }
-            }
-        });
-
-        this.listener= null;
-//        getMessages(userId, order);
-    }
-
-    public void setOnMessagesReceivedListener(MessageHandler.onMessagesReceivedListener listener){
-        this.listener = listener;
-    }
-
-    public void getMessages(final int userId, final Order order) {
-        final ArrayList<Message> messages = new ArrayList<>();
-        rootRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot ds: snapshot.getChildren()
-                ) {
-                    System.out.println(ds.toString());
-                    int dbOrderId = Integer.parseInt(snapshot.child("orderId").getValue().toString());
-                    System.out.println( "AAAAAAAAAAAAAAAAA why is this " +dbOrderId);
-                    if (dbOrderId == order.getOrderID()){
-                        String body = ds.child("body").toString();
-                        int dbUserId =Integer.parseInt(ds.child("senderId").getValue().toString());
-
-                        Message message;
-                        if(userId != dbUserId) {
-                            message = new Message(body,false);
-                        } else {
-                            message = new Message(body,true);
-                        }
-                        messages.add(message);
-                    }
-                }
-                listener.displayMessages(messages);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.i("orderlist", Arrays.toString(msgsList.toArray()));
+                listener.displayMessages(msgsList);
             }
         });
     }

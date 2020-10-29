@@ -45,6 +45,7 @@ public class ChatActivity extends AppCompatActivity {
         System.out.println( "userId = " + userId + ", orderId = "+ orderId);
 
         SpecificOrderHandler soh = new SpecificOrderHandler(orderId);
+
         soh.setOnSpecificOrderReceivedListener(new SpecificOrderHandler.onSpecificOrderReceivedListener() {
             @Override
             public void displayOrder(Order order) {
@@ -55,6 +56,7 @@ public class ChatActivity extends AppCompatActivity {
                 messageList = new ArrayList<>();
 
                 MessageHandler mh = new MessageHandler(userId,currentOrder);
+
                 mh.setOnMessagesReceivedListener(new MessageHandler.onMessagesReceivedListener() {
                     @Override
                     public void displayMessages(List<Message> messages) {
