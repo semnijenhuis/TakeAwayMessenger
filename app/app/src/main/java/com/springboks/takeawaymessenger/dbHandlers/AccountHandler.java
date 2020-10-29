@@ -20,6 +20,7 @@ import java.util.List;
 public class AccountHandler {
     private FirebaseFirestore db;
     private DatabaseReference rootRef;
+    private List<User> accounts = new ArrayList<>();
 
     public interface onAccountsReceivedListener {
         public void displayAccounts(List<User> accounts);
@@ -45,7 +46,7 @@ public class AccountHandler {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    List<User> accounts = new ArrayList<>();
+
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if (!document.getData().isEmpty()) {
                             int userId = Integer.parseInt(document.getData().get("userId").toString());
@@ -69,6 +70,15 @@ public class AccountHandler {
                 }
             }
         });
+    }
+
+    public boolean isCourierId (int senderId){
+        for (User user : accounts){
+            if (user.getUserID() == senderId && (user instanceof Courier)){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

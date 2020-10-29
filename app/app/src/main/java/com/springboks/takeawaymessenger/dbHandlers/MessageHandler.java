@@ -20,6 +20,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.springboks.takeawaymessenger.model.Message;
 import com.springboks.takeawaymessenger.model.Order;
+import com.springboks.takeawaymessenger.model.User;
 
 
 import java.lang.reflect.Array;
@@ -33,6 +34,8 @@ public class MessageHandler {
     private FirebaseFirestore db;
     private DatabaseReference rootRef;
     private Order thisOrder;
+    private AccountHandler accountHandler;
+    private Message msg = null;
 
     public interface onMessagesReceivedListener{
         public void displayMessages(List<Message> messages);
@@ -44,6 +47,7 @@ public class MessageHandler {
         db = FirebaseFirestore.getInstance();
         this.listener= null;
         getMessages(userId, order);
+        accountHandler = new AccountHandler();
     }
 
 
@@ -53,6 +57,7 @@ public class MessageHandler {
 
     public void getMessages(final int userId, final Order order) {
         final List<Message> msgsList = new ArrayList<>();
+
 
         //Getting msgs from the order
         CollectionReference allMessage = db.collection("messages");
@@ -69,7 +74,24 @@ public class MessageHandler {
 
                 for (DocumentChange dc : value.getDocumentChanges()) {
 
-                    Message msg = dc.getDocument().toObject(Message.class);
+                    msg = dc.getDocument().toObject(Message.class);
+
+                    if (userId == -1){
+                        //loggining by order
+                    }
+                    else {
+                        //loggining by user
+                        accountHandler.setOnAccountsReceivedListener(new AccountHandler.onAccountsReceivedListener() {
+                            @Override
+                            public void displayAccounts(List<User> accounts) {
+                                boolean isCourier = accountHandler.isCourierId(msg.getSenderId());
+                                Log.i("courier", isCourier + "");
+
+                            }
+                        });
+
+                    }
+
                     if (userId == msg.getSenderId()){
                         msg.setMe(true);
                     }
@@ -97,3 +119,7 @@ public class MessageHandler {
         });
     }
 }
+
+//if no user id = loggining by order
+// if sender id = courier id == all msgs that are not froum courier is me
+
