@@ -11,12 +11,15 @@ public class Message {
     private Boolean isMe;
     private int orderId;
 
+    public Message() {
+    }
+
     public Message(String body, Boolean isMe) {
         this.body = body;
         this.isMe = isMe;
     }
 
-    public Message(int senderId,  String body, int orderId) {
+    public Message(int senderId, String body, int orderId) {
         this.senderId = senderId;
         time = LocalDate.now();
         this.body = body;
@@ -58,5 +61,29 @@ public class Message {
 
     public void setMe(Boolean me) {
         isMe = me;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "senderId=" + senderId +
+                ", receiver=" + receiver +
+                ", time=" + time +
+                ", body='" + body + '\'' +
+                ", isMe=" + isMe +
+                ", orderId=" + orderId +
+                '}';
+    }
+
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }
