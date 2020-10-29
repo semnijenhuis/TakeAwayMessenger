@@ -131,13 +131,10 @@ public class ChatActivity extends AppCompatActivity {
         message.put("orderId", orderId);
 
 
-
-
         db.collection("messages").document().set(message).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("luc", "DocumentSnapshot successfully written!");
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

@@ -73,6 +73,7 @@ public class MessageHandler {
                         } else {
                             msg.setMe(false);
                         }
+                        msgsList.add(msg);
                     }
 
                     //if logged in by order number
