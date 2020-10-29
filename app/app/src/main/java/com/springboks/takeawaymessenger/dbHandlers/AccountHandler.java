@@ -77,8 +77,6 @@ public class AccountHandler {
     }
 
     public boolean isCourierId (int senderId){
-        Log.i("luc iscourier", senderId + "");
-
         for (User user : accounts){
             if (user.getUserID() == senderId && (user instanceof Courier)){
                 return true;

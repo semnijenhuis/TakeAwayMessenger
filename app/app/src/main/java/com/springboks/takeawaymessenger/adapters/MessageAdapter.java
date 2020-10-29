@@ -32,7 +32,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.CustomVi
 
     @Override
     public int getItemViewType(int position) {
-        Log.i("luc", messageList.get(position).getMe() + "");
 
         if (messageList.get(position).getMe()) {
              return R.layout.me_bubble;

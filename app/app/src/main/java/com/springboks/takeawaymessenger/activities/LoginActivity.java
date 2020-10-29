@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                 if(!accountMatch){
                     Toast.makeText(view.getContext(), "Username or password incorrect", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

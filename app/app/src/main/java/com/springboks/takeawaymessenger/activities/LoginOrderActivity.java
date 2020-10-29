@@ -26,8 +26,6 @@ public class LoginOrderActivity extends AppCompatActivity {
         actionBar.hide();
 
         Button login = findViewById(R.id.loginLoginButton);
-
-
     }
 
     public void cancelOrderNumber(View view) {
@@ -56,12 +54,5 @@ public class LoginOrderActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
-
-
     }
 }

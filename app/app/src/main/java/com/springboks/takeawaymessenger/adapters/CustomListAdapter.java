@@ -24,7 +24,6 @@ public class CustomListAdapter extends ArrayAdapter {
     private ImageView imageView;
     private TextView orderId;
     private TextView name;
-    private TextView addres;
     private TextView deliveryTime;
 
     public CustomListAdapter(Context context, List objects) {
@@ -48,10 +47,6 @@ public class CustomListAdapter extends ArrayAdapter {
 
             name = convertView.findViewById(R.id.orderNameID);
             name.setText(order.getName());
-
-            addres = convertView.findViewById(R.id.orderAddresID);
-            addres.setText("order.getCustomer().getAddress()");
-
             deliveryTime = convertView.findViewById(R.id.orderDeliverytimeID);
             deliveryTime.setText("Delivery Time: " + order.getActualDeliveryTime().toString());
 

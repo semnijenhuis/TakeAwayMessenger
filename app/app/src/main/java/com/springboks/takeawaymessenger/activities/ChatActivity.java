@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.gson.JsonObject;
 import com.springboks.takeawaymessenger.R;
 import com.springboks.takeawaymessenger.adapters.MessageAdapter;
 import com.springboks.takeawaymessenger.dbHandlers.AccountHandler;
@@ -32,9 +31,6 @@ import com.springboks.takeawaymessenger.model.Message;
 import com.springboks.takeawaymessenger.model.Order;
 import com.springboks.takeawaymessenger.model.User;
 
-import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

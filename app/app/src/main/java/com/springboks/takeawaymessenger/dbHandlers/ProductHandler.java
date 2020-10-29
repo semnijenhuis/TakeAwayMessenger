@@ -39,9 +39,6 @@ public class ProductHandler {
         this.listener = listener;
     }
 
-
-
-
     public void getProducts(Order order) {
         CollectionReference productRef = db.collection("products");
         specificOrder = order;
@@ -60,8 +57,6 @@ public class ProductHandler {
 
                             Product product = new Product(name,price,productId);
                             products.add(product);
-
-
                         }
                     }
                     for (int i = 0; i < specificOrder.getProductIds().size() ; i++) {

@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (!loggedIn) {
 
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 orders = ordersFromDatabase;
                 CustomListAdapter adapter = new CustomListAdapter(listView.getContext(), orders);
                 listView.setAdapter(adapter);
-
-
             }
         });
 
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 whenOrderClicked(position);
             }
         });
-
     }
 
     private void whenOrderClicked(int position) {

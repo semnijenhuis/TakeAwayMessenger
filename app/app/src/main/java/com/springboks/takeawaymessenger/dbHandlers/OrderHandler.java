@@ -63,7 +63,6 @@ public class OrderHandler {
                             String customerId = "";
 
                             if (document.getData().get("customerId") != null) {
-
                                 customerId = document.getData().get("customerId").toString();
                             }
 
@@ -102,6 +101,4 @@ public class OrderHandler {
         });
     }
 }
-
-//
 
