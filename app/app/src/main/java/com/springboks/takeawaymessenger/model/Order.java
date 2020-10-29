@@ -132,4 +132,6 @@ private ArrayList<Message> courierMessages;
     public ArrayList<Integer> getProductIds() {
         return productIds;
     }
+
+
 }

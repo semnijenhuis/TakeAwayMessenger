@@ -10,16 +10,19 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.springboks.takeawaymessenger.model.Message;
 import com.springboks.takeawaymessenger.model.Order;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +40,13 @@ public class MessageHandler {
     public MessageHandler(int userId, Order order) {
         db = FirebaseFirestore.getInstance();
 //        rootRef = FirebaseDatabase.getInstance().getReference("messages");
-        db.collection("messages").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+        //Getting msgs from the order
+        CollectionReference allMessage = db.collection("messages");
+        Query orderMsgs = allMessage.whereEqualTo("orderId", order.getOrderID());
+
+        //Looping on msgs belonging to orderId
+        orderMsgs.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
