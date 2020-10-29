@@ -58,8 +58,14 @@ public class SpecificOrderHandler {
                                 String selectedDeliveryTime = document.getData().get("selectedDeliveryTime").toString();
                                 String actualDeliveryTime = document.getData().get("actualDeliveryTime").toString();
                                 boolean open = Boolean.parseBoolean(document.getData().get("open").toString());
-                                int customerId = Integer.parseInt(document.getData().get("customerId").toString());
+                                String customerId = "";
+
+                                if (document.getData().get("customerId") != null) {
+                                    customerId = document.getData().get("customerId").toString();
+                                }
+
                                 int courierId = Integer.parseInt(document.getData().get("courierId").toString());
+
 
                                 ArrayList<Integer> productIds = new ArrayList<>();
                                 if (document.getData().get("productIds") != null) {
@@ -71,8 +77,12 @@ public class SpecificOrderHandler {
                                     }
                                 }
 
-
-                                order = new Order(orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId, productIds);
+                                if (customerId.isEmpty()){
+                                    order = new Order(orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, courierId, productIds);
+                                }
+                                else {
+                                    order = new Order(orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, Integer.parseInt(customerId), courierId, productIds);
+                                }
                                 break;
                             } else {
                                 order = null;

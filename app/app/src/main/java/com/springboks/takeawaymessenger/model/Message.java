@@ -31,29 +31,10 @@ public class Message {
     }
 
 
-    public User getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
-    }
-
-    public LocalDate getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDate time) {
-        this.time = time;
-    }
-
     public String getBody() {
         return body;
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
 
     public Boolean getMe() {
         return isMe;

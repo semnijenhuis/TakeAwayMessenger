@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(final View view) {
         ah = new AccountHandler();
+
         ah.setOnAccountsReceivedListener(new AccountHandler.onAccountsReceivedListener() {
             @Override
             public void displayAccounts(List<User> accounts) {

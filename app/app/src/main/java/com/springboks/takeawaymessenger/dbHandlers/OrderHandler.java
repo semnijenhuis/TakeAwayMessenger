@@ -42,23 +42,37 @@ public class OrderHandler {
 
     public void getOrders(final int accountId) {
         CollectionReference ordersRef = db.collection("orders");
+
         ordersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                 if (task.isSuccessful()) {
                     List<Order> orders = new ArrayList<>();
+
                     for (QueryDocumentSnapshot document : task.getResult()) {
+
                         if (!document.getData().isEmpty()) {
+
                             int orderId = Integer.parseInt(document.getData().get("orderId").toString());
                             String restaurantName = document.getData().get("restaurantName").toString();
                             String date = document.getData().get("date").toString();
                             String selectedDeliveryTime = document.getData().get("selectedDeliveryTime").toString();
                             String actualDeliveryTime = document.getData().get("actualDeliveryTime").toString();
                             boolean open = Boolean.parseBoolean(document.getData().get("open").toString());
-                            int customerId = Integer.parseInt(document.getData().get("customerId").toString());
+                            String customerId = "";
+
+                            if (document.getData().get("customerId") != null) {
+
+                                customerId = document.getData().get("customerId").toString();
+                            }
+
+                            Order order = null;
+
                             int courierId = Integer.parseInt(document.getData().get("courierId").toString());
 
                             ArrayList<Integer> productIds = new ArrayList<>();
+
                             if (document.getData().get("productIds") != null) {
                                 Object pIds = document.getData().get("productIds");
                                 String[] values = String.valueOf(pIds).replace("[", "").replace("]", "").replace(" ", "").split(",");
@@ -68,10 +82,16 @@ public class OrderHandler {
                                 }
                             }
 
-                            System.out.println("pids =" + productIds);
+                            if (customerId.isEmpty()){
+                                order = new Order(orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, courierId, productIds);
 
-                            Order order = new Order(orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, customerId, courierId, productIds);
-                            if (accountId == courierId || accountId == customerId) {
+                            }
+                            else {
+                                order = new Order(orderId, restaurantName, date, selectedDeliveryTime, actualDeliveryTime, open, Integer.parseInt(customerId), courierId, productIds);
+
+                            }
+
+                            if (!customerId.isEmpty() && (accountId == courierId || accountId == Integer.parseInt(customerId))) {
                                 orders.add(order);
                             }
                         }
@@ -82,4 +102,6 @@ public class OrderHandler {
         });
     }
 }
+
+//
 

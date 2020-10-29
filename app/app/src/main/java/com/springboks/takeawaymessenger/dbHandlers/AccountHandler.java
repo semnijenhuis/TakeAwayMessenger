@@ -1,5 +1,7 @@
 package com.springboks.takeawaymessenger.dbHandlers;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +25,7 @@ public class AccountHandler {
     private List<User> accounts = new ArrayList<>();
 
     public interface onAccountsReceivedListener {
+
         public void displayAccounts(List<User> accounts);
     }
 
@@ -66,6 +69,7 @@ public class AccountHandler {
                             }
                         }
                     }
+
                     listener.displayAccounts(accounts);
                 }
             }
@@ -73,6 +77,8 @@ public class AccountHandler {
     }
 
     public boolean isCourierId (int senderId){
+        Log.i("luc iscourier", senderId + "");
+
         for (User user : accounts){
             if (user.getUserID() == senderId && (user instanceof Courier)){
                 return true;

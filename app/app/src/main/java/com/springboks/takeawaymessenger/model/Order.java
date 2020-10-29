@@ -33,21 +33,23 @@ private ArrayList<Message> courierMessages;
         imageFile = "subway.png";
     }
 
-    public List<Integer> getProducts() {
-        return productIds;
-    }
-
-    public void setProducts(ArrayList<Integer> products) {
-        this.productIds = products;
+    public Order(int orderID, String restaurantName, String date, String selectedDeliveryTime, String actualDeliveryTime, boolean open, int courierId, ArrayList<Integer> productIds) {
+        this.productIds = productIds;
+        this.orderID = orderID;
+        this.name = restaurantName;
+        this.date = date;
+        this.selectedDeliveryTime = selectedDeliveryTime;
+        this.actualDeliveryTime = actualDeliveryTime;
+        this.open = open;
+        this.courierId = courierId;
+        this.imageFile = imageFile;
+        imageFile = "subway.png";
     }
 
     public int getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
-    }
 
     public String getName() {
         return name;
@@ -57,76 +59,12 @@ private ArrayList<Message> courierMessages;
         this.name = name;
     }
 
-//    public LocalDate getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(LocalDate date) {
-//        this.date = date;
-//    }
-
-    public String getSelectedDeliveryTime() {
-        return selectedDeliveryTime;
-    }
-
-//    public void setSelectedDeliveryTime(LocalTime selectedDeliveryTime) {
-//        this.selectedDeliveryTime = selectedDeliveryTime;
-//    }
-
     public String getActualDeliveryTime() {
         return actualDeliveryTime;
     }
 
-//    public void setActualDeliveryTime(LocalTime actualDeliveryTime) {
-//        this.actualDeliveryTime = actualDeliveryTime;
-//    }
-
-    public boolean isOpen() {
-        return open;
-    }
-
-    public void setOpen(boolean open) {
-        this.open = open;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-//    public void setCustomer(Customer customer) {
-//        this.customer = customer;
-//    }
-//
-    public int getCourierId() {
-        return courierId;
-    }
-//
-//    public void setCourier(Courier courier) {
-//        this.courier = courier;
-//    }
-
-    public ArrayList<Message> getCustomerMessages() {
-        return customerMessages;
-    }
-
-    public void setCustomerMessages(ArrayList<Message> customerMessages) {
-        this.customerMessages = customerMessages;
-    }
-
-    public ArrayList<Message> getCourierMessages() {
-        return courierMessages;
-    }
-
-    public void setCourierMessages(ArrayList<Message> courierMessages) {
-        this.courierMessages = courierMessages;
-    }
-
     public String getImageFile() {
         return imageFile;
-    }
-
-    public void setImageFile(String imageFile) {
-        this.imageFile = imageFile;
     }
 
     public ArrayList<Integer> getProductIds() {
