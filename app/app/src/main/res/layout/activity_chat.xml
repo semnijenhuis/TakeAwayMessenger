@@ -20,6 +20,19 @@
         android:textColor="@color/white"
         android:elevation="2dp" />
 
+    <ImageView
+        android:id="@+id/chatBackbutton"
+        android:layout_width="40dp"
+        android:layout_height="41dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:onClick="chatFinish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/conversation"
         android:layout_width="match_parent"

@@ -150,4 +150,8 @@ public class OrderActivity extends AppCompatActivity {
         //display results and hide button
         Toast.makeText(view.getContext(), "Order was closed", Toast.LENGTH_SHORT).show();
     }
+
+    public void orderFinish(View view) {
+        finish();
+    }
 }

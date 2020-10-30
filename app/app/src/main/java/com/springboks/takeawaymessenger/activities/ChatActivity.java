@@ -160,6 +160,10 @@ public class ChatActivity extends AppCompatActivity {
                             view.getWindowToken(), 0);
         }
     }
+
+    public void chatFinish(View view) {
+        finish();
+    }
 }
 
 
